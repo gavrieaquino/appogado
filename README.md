@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# APPogado prototype
 
-## Getting Started
+**This is a demonstration prototype running on sample data.** It does not process real
+lawyers, clients, briefs or pro bono hours, and nothing in it is legal advice.
 
-First, run the development server:
+APPogado is planned subscription software for Philippine lawyers and law firms that
+covers three things behind one login:
+
+1. **Get discovered.** A directory of verified lawyers with identical cards and neutral ordering.
+2. **Triage fast.** A client's account of their problem becomes a one-page brief.
+3. **Stay ULAS-compliant.** Pro bono hours under the Rules on Unified Legal Aid Service are tracked and reported.
+
+## What this prototype demonstrates
+
+- The client flow: describe a problem once, review the brief, send it to a chosen lawyer.
+- The lawyer flow: inbox of briefs, accept or decline (paid or pro bono), ULAS hour tracker, compliance report.
+- How the interface enforces the Code of Professional Responsibility and Accountability (CPRA) rules on advertising and fee-sharing.
+
+## What it does not demonstrate
+
+- Real lawyer verification, real AI brief generation, payments, accounts or storage.
+- Confirmed ULAS rules. The tracker math follows `docs/ulas-rules.md`, which a lawyer has not reviewed yet.
+- Legal review. The CPRA rules in `docs/compliance-rules.md` have not been reviewed by a lawyer.
+
+## Why the data is sample data
+
+Real user data needs a lawyer's review of the CPRA rules, ULAS rules confirmed against
+A.M. No. 22-11-01-SC, a lawyer verification source, and a decision on the official SC
+ULAS Portal. Until those are done, the system holds sample data only. See `CLAUDE.md`.
+
+## Run it
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`npm run build` writes a static site to `out/`.
