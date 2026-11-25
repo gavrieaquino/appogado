@@ -1,5 +1,3 @@
-import Planned from "@/components/Planned";
-
-export default function Page() {
-  return <Planned href="/describe/" />;
-}
+import Describe from "./Describe";
+export const metadata = { title: "Describe your problem · APPogado prototype" };
+export default function Page() { return <Describe />; }

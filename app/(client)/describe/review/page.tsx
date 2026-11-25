@@ -1,5 +1,3 @@
-import Planned from "@/components/Planned";
-
-export default function Page() {
-  return <Planned href="/describe/review/" />;
-}
+import Review from "./Review";
+export const metadata = { title: "Check your brief · APPogado prototype" };
+export default function Page() { return <Review />; }
