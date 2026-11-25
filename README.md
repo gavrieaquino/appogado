@@ -19,7 +19,9 @@ Try it end to end in one browser:
 3. **Bookings** (`/app/bookings`): schedule it, close the appointment, enter the hours.
 4. **ULAS** (`/app/ulas`): the hours count toward 60, with the personal minimum, days left, and a printable report.
 
-**Near you (Quezon City pilot):** on `/find`, tap "Use my location" or choose a QC barangay. The answer line names the nearest office that handles your kind of matter, the list orders by distance, and a map shows the offices. Your location stays on the device.
+**Near you (Quezon City pilot):** `/find` is a map page. Tap "Use my location" or choose a QC barangay; the answer card gives the distance to the nearest office with a lawyer for your kind of matter, the office list and the gold numbers on the map run in distance order, and each office opens to its lawyers. On phones the answer card is the peek of a bottom sheet. Your location stays on the device.
+
+The UI follows `.claude/skills/gis-ui-kit`, distilled from LAMBAT.
 
 Also: the firm view (`/app/firm`), account and seats (`/app/account`), the lawyer landing page (`/for-lawyers`) and a lawyer verification mock (`/admin/verification`). "Reset demo" in the footer clears everything.
 
@@ -27,7 +29,7 @@ How the interface enforces the CPRA rules on advertising and fee-sharing is list
 
 ## Screens
 
-Screenshots from the smoke test are in `docs/screens/`: client home (`01`), consent (`02`), redaction check (`03`), brief review (`04`), directory (`05`), lawyer inbox (`06`), brief decision (`07`), bookings (`08`), ULAS (`09`), report (`10`), lawyer landing (`11`), firm (`12`), phone views (`13` to `16`), and Near you on desktop and phone (`17`, `18`).
+Screenshots from the smoke test are in `docs/screens/`: client home (`01`), consent (`02`), redaction check (`03`), brief review (`04`), directory (`05`), lawyer inbox (`06`), brief decision (`07`), bookings (`08`), ULAS (`09`), report (`10`), lawyer landing (`11`), firm (`12`), phone views (`13` to `16`), and Near you on desktop and phone (`17` to `19`).
 
 ## What it does not demonstrate
 

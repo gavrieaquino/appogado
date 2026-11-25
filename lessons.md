@@ -2,6 +2,9 @@
 
 Newest first. One line each: what happened, what rule it became.
 
+- 2026-11-25 — The user said the UI was "not good at all" and asked whether the LAMBAT inspiration had been read. Only the summary had; the LAMBAT source (tokens, shell, answer card, map page) had not, and the UI used none of its visual system. Rule: read a reference's source before building, build its kit first (`gis-ui-kit`), then follow its build order.
+- 2026-11-25 — A selected map office re-centred the map whenever it was not well inside the view, pushing the other nearest offices off-screen. Rule: pan only when the selection is actually out of view.
+- 2026-11-25 — The status island measured its own clipped width and stayed truncated. Rule: measure natural content width against the available width, never the box being resized.
 - 2026-11-25 — ui-ux-pro-max recommended a "Trust & Authority" pattern with security badges and case studies. For lawyers that breaks CPRA Canon II. Rule: run every external design recommendation past `docs/compliance-rules.md` before applying it.
 - 2026-11-25 — Disabled "Continue" and "Accept" buttons could not be focused and did not say what was missing. Rule: `aria-disabled` plus an explanation on click (D26).
 - 2026-11-25 — The GPS line read "accurate to about 0 m" in the test browser, which reports zero accuracy. Rule: never show a measured value the device did not really measure.
