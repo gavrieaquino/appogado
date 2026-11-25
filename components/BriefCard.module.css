@@ -1,4 +1,4 @@
-.card { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.card { container-type: inline-size; position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
 /* Signature motif: a thin accent band across the top of the brief, the product's "hero" object */
 .band { height: 6px; background: repeating-linear-gradient(-45deg, var(--accent) 0 10px, var(--accent-tint) 10px 20px); }
 .head { padding: var(--s-4) var(--s-4) var(--s-3); border-bottom: 1px solid var(--line); }
@@ -17,5 +17,5 @@
 .row dd { margin: 0; }
 .facts, .docs { margin: 0; padding-left: 1.1em; }
 .facts li + li, .docs li + li { margin-top: var(--s-1); }
-@media (max-width: 600px) { .row { grid-template-columns: 1fr; gap: 2px; } .head, .body { padding-left: var(--s-3); padding-right: var(--s-3); } }
+@container (max-width: 520px) { .row { grid-template-columns: 1fr; gap: 2px; } .head, .body { padding-left: var(--s-3); padding-right: var(--s-3); } }
 @media print { .card { box-shadow: none; border-color: #999; break-inside: avoid; } }
