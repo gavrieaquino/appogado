@@ -1,0 +1,13 @@
+/* Answer card (LAMBAT map.css .col-top/.q/.stats). Put it first in the column. */
+.ac{position:relative;overflow:hidden;padding:calc(14px + var(--s3)) var(--s3) var(--s2);background:var(--card)}
+.ac::before{content:"";position:absolute;top:0;left:0;right:0;height:14px;background:repeating-linear-gradient(-45deg,var(--gold) 0 20px,#fff 20px 24px)}
+.ac-eyebrow{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s1);margin:0 0 var(--s2);font-size:var(--t-sm);color:var(--muted)}
+.ac-place{font:700 var(--t-md)/1.25 var(--f-display);color:var(--ink)}
+.ac-q{font:700 1.25rem/1.25 var(--f-display);margin:0 0 var(--s2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ac-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:var(--s2)}
+.ac-n{font:700 1.75rem/1.1 var(--f-display);color:var(--brand-dark);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ac-l{font-size:var(--t-sm);line-height:1.35}
+.ac-s{font-size:var(--t-xs);line-height:1.35;color:var(--muted)}
+.ac-honest{margin:var(--s2) 0 0;padding:6px 10px;border-radius:var(--radius-sm);background:var(--brand-wash);font-size:var(--t-xs);color:var(--muted)}
+.ac-act{margin:var(--s2) 0 0;font-weight:600;color:var(--brand)}
+.ac-foot{margin-top:var(--s2);padding-top:var(--s1);border-top:1px solid var(--line);font-size:var(--t-xs);color:var(--muted)}

@@ -1,0 +1,20 @@
+/* LAMBAT token structure (web/css/base.css :root). Swap the --brand* values per product; keep the rest. */
+:root{
+  --brand:#0038BD; --brand-dark:#00267F; --brand-tint:#E3EAF8; --brand-wash:#F3F6FD; --on-brand:#fff;
+  --gold:#EFBE01;            /* "act here" only; never small text on light */
+  --bg:#EEEEEE; --card:#FFFFFF; --ink:#141A2E; --muted:#4A5168; --line:#D3D6DE;
+  --warn-bg:#FBE7DC; --warn-ink:#6B2A0A;
+  --glass:rgba(255,255,255,.78); --glass-edge:rgba(20,26,46,.08);
+  --ramp-1:#E3EAF8; --ramp-2:#AFC2EA; --ramp-3:#6F90D9; --ramp-4:#0038BD; --ramp-5:#001F6B;
+  --s0:4px; --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+  --t-xs:.75rem; --t-sm:.875rem; --t-md:1rem; --t-lg:1.5rem; --t-xl:clamp(2rem,4.2vw,3rem);
+  --f-display:"Space Grotesk",system-ui,sans-serif; --f-text:"Public Sans",system-ui,sans-serif;
+  --radius:16px; --radius-sm:8px;
+  --shadow:0 2px 12px rgba(20,26,46,.14),0 1px 2px rgba(20,26,46,.1);
+  --ease:cubic-bezier(.3,.9,.3,1); --spring:cubic-bezier(.34,1.45,.5,1);
+  --nav-w:232px; --nav-w-closed:64px; --tab-h:64px;
+}
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);border:.5px solid var(--glass-edge)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.glass{background:var(--card)}}
+@media (prefers-reduced-transparency:reduce){.glass{background:var(--card);backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
