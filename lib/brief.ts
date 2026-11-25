@@ -39,7 +39,8 @@ export function urgencyOf(text: string, deadline: string | null): { urgency: Urg
 
 export function sentences(text: string, max = 5): string[] {
   return text
-    .split(/(?<=[.!?])\s+|\n+/)
+    // Do not split after titles and abbreviations such as Mr., Atty., No., St.
+    .split(/(?<!\b(?:Mr|Mrs|Ms|Dr|Atty|Gng|G|No|St|Sr|Jr|Brgy)\.)(?<=[.!?])\s+|\n+/)
     .map((s) => s.trim())
     .filter((s) => s.length > 3)
     .slice(0, max)

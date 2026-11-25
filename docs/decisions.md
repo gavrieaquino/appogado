@@ -17,6 +17,12 @@ Newest last. Each entry: date, decision, reason, what would reverse it.
 | D11 | 2026-11-24 | Filipino copy ships as draft, marked "draft translation" in `words.md`. | No reviewer named yet (M9). | Reviewer named |
 | D12 | 2026-11-24 | Design tokens start neutral with one placeholder accent (purple, from the current identity). System font stack, no web fonts. | Brand direction open (M10); no font download on prepaid data. | Brand direction set |
 | D13 | 2026-11-24 | ULAS rules recorded from secondary sources with conflicts listed. | The SC site returns 403 to automated downloads from the build environment. | Owner uploads the official FAQ / Manual PDF |
+| D14 | 2026-11-25 | Demo state lives in the browser (localStorage, `lib/store.ts`). A brief the client sends appears in the lawyer inbox, whichever lawyer was chosen, labelled "From this demo". | Shows both problems linked in one demo without a backend. | Pilot: real accounts and storage |
+| D15 | 2026-11-25 | The brief is built by keyword rules (`lib/brief.ts`), not AI, and the screen says so. | No AI provider chosen yet (M7), and no client data may go to one before the Data Privacy position is settled. | M7 resolved |
+| D16 | 2026-11-25 | Fixed demo date 25 Nov 2026 (`lib/demo.ts`), shown in the footer. | Numbers stay the same in every pitch. | Pilot |
+| D17 | 2026-11-25 | Vitest added for the ULAS math, CSV, ordering and redaction; Playwright smoke script for routes, sizes and the end-to-end demo. | The tracker's numbers must be checkable; the redaction tests already caught two real bugs. | — |
+| D18 | 2026-11-25 | The lawyer side is English only in the prototype; the client side is fully EN/FIL (FIL draft). | Lawyers work in English; clients have low legal literacy. Vision principle 4 asks for both everywhere. | Pilot, or if pilot lawyers ask for it |
+| D19 | 2026-11-25 | ULAS Fund contribution cap uses the lowest figure found (50%). | Conservative: never tells a lawyer they are covered when they might not be. | M5 resolved |
 
 ## Open items
 

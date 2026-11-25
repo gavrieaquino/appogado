@@ -12,9 +12,20 @@ covers three things behind one login:
 
 ## What this prototype demonstrates
 
-- The client flow: describe a problem once, review the brief, send it to a chosen lawyer.
-- The lawyer flow: inbox of briefs, accept or decline (paid or pro bono), ULAS hour tracker, compliance report.
-- How the interface enforces the Code of Professional Responsibility and Accountability (CPRA) rules on advertising and fee-sharing.
+Try it end to end in one browser:
+
+1. **Client** (`/`, English or Filipino): give consent item by item, describe the problem, see which personal details will be hidden, check the one-page brief, then choose a lawyer from the directory or ask for pro bono help.
+2. **Lawyer** (`/app/inbox`): the brief arrives in the inbox. Accept unlocks only after the conflict check. Accept it as pro bono.
+3. **Bookings** (`/app/bookings`): schedule it, close the appointment, enter the hours.
+4. **ULAS** (`/app/ulas`): the hours count toward 60, with the personal minimum, days left, and a printable report.
+
+Also: the firm view (`/app/firm`), account and seats (`/app/account`), the lawyer landing page (`/for-lawyers`) and a lawyer verification mock (`/admin/verification`). "Reset demo" in the footer clears everything.
+
+How the interface enforces the CPRA rules on advertising and fee-sharing is listed in `docs/compliance-rules.md` and checked by `npm run check:compliance`.
+
+## Screens
+
+Screenshots from the smoke test are in `docs/screens/`: client home (`01`), consent (`02`), redaction check (`03`), brief review (`04`), directory (`05`), lawyer inbox (`06`), brief decision (`07`), bookings (`08`), ULAS (`09`), report (`10`), lawyer landing (`11`), firm (`12`), and phone views (`13` to `16`).
 
 ## What it does not demonstrate
 
@@ -38,4 +49,8 @@ npm install
 npm run dev
 ```
 
-`npm run build` writes a static site to `out/`.
+`npm run build` writes a static site to `out/`. Checks:
+
+```bash
+npm run lint && npm test && npm run check:compliance && npm run build && npm run smoke
+```

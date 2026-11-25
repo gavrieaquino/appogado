@@ -8,7 +8,7 @@ const PATTERNS: [RedactKind, RegExp][] = [
   ["case", /\b(?:(?:civil|criminal|special civil|NLRC)\s+)?(?:case|G\.R\.)\s+no\.?\s*[\w-]+/gi],
   ["address", /(?:#\s?\d+[\w-]*\s|\b\d{1,4}\s)(?:[A-Z][\w.]*\s){0,3}(?:St\.?|Street|Ave\.?|Avenue|Road|Rd\.?|Kalye)/g],
   // Names after a Filipino name marker (si/ni/kay) and/or a title, one to three capitalised words.
-  ["name", /\b(?:(?:si|ni|kay|named)\s+(?:(?:Mr|Mrs|Ms|Atty|Dr|Gng|G)\.\s+)?|(?:Mr|Mrs|Ms|Atty|Dr|Gng|G)\.\s+)([A-Z][a-zñ]+(?:\s+[A-Z]\.?)?(?:\s+[A-Z][a-zñ]+){0,2})/g],
+  ["name", /\b(?:(?:si|ni|kay|named)\s+(?:(?:Mr|Mrs|Ms|Atty|Dr|Gng|G)\.\s+)?|(?:Mr|Mrs|Ms|Atty|Dr|Gng|G)\.\s+)([A-Z][a-zñ]+(?:\s+[A-Z]\.)?(?:\s+[A-Z][a-zñ]+){0,2})/g], // a middle initial needs its period
 ];
 
 export const LABEL: Record<RedactKind, string> = { name: "[NAME]", phone: "[PHONE]", email: "[EMAIL]", address: "[ADDRESS]", case: "[CASE NO.]" };

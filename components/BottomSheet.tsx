@@ -11,7 +11,14 @@ export default function BottomSheet({ peek, children, openLabel, closeLabel }: {
   const start = useRef<{ y: number; t: number } | null>(null);
   const moved = useRef(false);
   const body = useRef<HTMLDivElement>(null);
-  useEffect(() => { if (body.current) body.current.inert = !open; }, [open]);
+  // Only the phone sheet hides its body; on desktop the panel is always open and usable.
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const apply = () => { if (body.current) body.current.inert = mq.matches && !open; };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, [open]);
 
   const onDown = (e: React.PointerEvent) => { start.current = { y: e.clientY, t: performance.now() }; moved.current = false; (e.target as Element).setPointerCapture?.(e.pointerId); };
   const onMove = (e: React.PointerEvent) => {

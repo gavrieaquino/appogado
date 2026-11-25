@@ -26,7 +26,7 @@ export default function Home() {
           <p className={s.free}>{t("home.free")}</p>
         </div>
         <figure className={s.sample}>
-          <figcaption className={s.cap}>{t("home.sample")} · <Term def={t("t.brief")}>{t("w.brief")}</Term></figcaption>
+          <figcaption className={s.cap}>{t("home.sample")} · <Term def={t("t.brief")}>{lang === "en" ? "What is a brief?" : "Ano ang buod?"}</Term></figcaption>
           <BriefCard brief={sample} lang={lang} />
         </figure>
       </section>

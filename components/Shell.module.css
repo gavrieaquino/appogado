@@ -32,7 +32,7 @@
 
 @media (max-width: 767px) {
   .shell { flex-direction: column; }
-  .rail { position: static; height: auto; width: auto; padding: var(--s-2) var(--s-3); border-right: 0; border-bottom: 1px solid var(--line); gap: 0; }
+  .rail { position: static; align-self: stretch; height: auto; width: auto; padding: var(--s-2) var(--s-3); border-right: 0; border-bottom: 1px solid var(--line); gap: 0; }
   .top { flex-direction: row; align-items: center; justify-content: space-between; }
   .brand { font-size: 1.15rem; }
   .sub { font-size: var(--fs-xs); }

@@ -14,7 +14,18 @@ describe("redaction", () => {
   });
 });
 
+describe("names with titles (regression: 'Mr. Roberto Lim' became 'Mr.' / '[NAME]im')", () => {
+  it("hides the whole surname, not just its first letter", () => {
+    expect(redact("I texted the owner, Mr. Roberto Lim, twice.")).toBe("I texted the owner, Mr. [NAME], twice.");
+    expect(redact("Kinausap ko si Juan D. Cruz kahapon.")).toBe("Kinausap ko si [NAME] kahapon.");
+  });
+});
+
 describe("template brief", () => {
+  it("does not split a fact after a title", () => {
+    const b = buildBrief({ story: "I texted the owner, Mr. Roberto Lim, twice. He did not reply.", wants: "", otherParty: "", deadline: null, files: [], city: "Quezon City", language: "en", proBono: false });
+    expect(b.facts).toEqual(["I texted the owner, Mr. [NAME], twice.", "He did not reply."]);
+  });
   it("classifies common Filipino and English wording", () => {
     expect(classify("Hindi binigay ng amo ko ang final pay at sahod ko")).toBe("labor");
     expect(classify("The landlord gave me a notice to vacate")).toBe("land");

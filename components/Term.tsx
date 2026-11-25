@@ -7,7 +7,7 @@ import s from "./Term.module.css";
 export default function Term({ children, def }: { children: React.ReactNode; def: string }) {
   const id = useId().replace(/:/g, "");
   const btn = useRef<HTMLButtonElement>(null);
-  const pop = useRef<HTMLDivElement>(null);
+  const pop = useRef<HTMLSpanElement>(null);
   const place = () => {
     const b = btn.current?.getBoundingClientRect();
     const p = pop.current;
@@ -24,10 +24,11 @@ export default function Term({ children, def }: { children: React.ReactNode; def
       <button ref={btn} type="button" className={s.term} popoverTarget={id} onClick={() => requestAnimationFrame(place)}>
         {children}<span className={s.q} aria-hidden>?</span>
       </button>
-      <div ref={pop} id={id} popover="auto" className={s.pop} role="tooltip"
+      {/* A span, not a div: terms sit inside paragraphs, and a div there breaks hydration. */}
+      <span ref={pop} id={id} popover="auto" className={s.pop} role="tooltip"
         onToggle={(e) => { if ((e as unknown as ToggleEvent).newState === "open") place(); }}>
         {def}
-      </div>
+      </span>
     </>
   );
 }
