@@ -1,0 +1,19 @@
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); margin-bottom: var(--s-5); }
+.stat { padding: var(--s-3) var(--s-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.statNum { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; }
+.statLbl { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); align-items: start; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+.h2 { margin: 0 0 var(--s-3); font-size: 1.1rem; }
+.section { margin-top: var(--s-5); }
+.ok { margin: var(--s-2) 0 0; color: var(--ok-ink); font-weight: 600; font-size: var(--fs-sm); }
+.miles { list-style: none; margin: 0 0 var(--s-3); padding: 0; display: grid; gap: var(--s-2); }
+.miles li { display: grid; gap: 2px; padding-left: 28px; position: relative; font-size: var(--fs-sm); }
+.miles li::before { content: ""; position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); }
+.miles li[data-done]::before { background: var(--ok-ink); border-color: var(--ok-ink); }
+.miles li[data-done]::after { content: "✓"; position: absolute; left: 4px; top: 1px; color: var(--surface); font-size: 12px; font-weight: 800; }
+.miles span { color: var(--muted); }
+.conflict { display: inline-block; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--warn-bg); color: var(--warn-ink); font-weight: 650; white-space: nowrap; }
+.unconf { display: inline-block; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--info-bg); color: var(--info-ink); font-weight: 650; white-space: nowrap; }
+@media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .stats { grid-template-columns: 1fr; } }
