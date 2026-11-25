@@ -1,8 +1,59 @@
 {
   "_meta": {
     "sampleData": true,
-    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. See CLAUDE.md problem constraints.",
-    "schema": "docs/surfaces.md"
+    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. Roll numbers use the SAMPLE- format so they cannot be mistaken for real ones.",
+    "lawyer": "l05"
   },
-  "items": []
+  "items": [
+    {
+      "id": "h01",
+      "date": "2025-03-14",
+      "matter": "Labor complaint drafting, partner clinic",
+      "hours": 4,
+      "kind": "service"
+    },
+    {
+      "id": "h02",
+      "date": "2025-06-02",
+      "matter": "Barangay legal aid day, Project 4",
+      "hours": 3,
+      "kind": "service"
+    },
+    {
+      "id": "h03",
+      "date": "2025-09-20",
+      "matter": "Child support demand letter",
+      "hours": 5,
+      "kind": "service"
+    },
+    {
+      "id": "h04",
+      "date": "2026-01-17",
+      "matter": "Tenant counselling, partner clinic",
+      "hours": 3,
+      "kind": "service"
+    },
+    {
+      "id": "h05",
+      "date": "2026-06-05",
+      "matter": "Legal aid clinic, walk-in advice",
+      "hours": 3,
+      "kind": "service"
+    },
+    {
+      "id": "h06",
+      "date": "2026-08-22",
+      "matter": "Small claims assistance",
+      "hours": 2.5,
+      "kind": "service"
+    },
+    {
+      "id": "h07",
+      "date": "2026-11-18",
+      "matter": "Hearing preparation: dismissal without notice",
+      "hours": 1.5,
+      "kind": "service",
+      "briefId": "b05"
+    }
+  ]
 }

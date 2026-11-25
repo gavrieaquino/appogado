@@ -11,6 +11,7 @@ export const surfaces: Surface[] = [
   { href: "/", label: "Home", title: "Describe your problem once", job: "Client landing. Shows a sample brief.", group: "client" },
   { href: "/describe/", label: "Describe", title: "Tell us what happened", job: "Intake: consent, then type, photo or upload, in English or Filipino.", group: "client" },
   { href: "/describe/review/", label: "Review brief", title: "This is what a lawyer will see", job: "Client checks and edits the brief, then chooses a lawyer or pro bono routing.", group: "client" },
+  { href: "/sent/", label: "Sent", title: "Your brief was sent", job: "Confirmation and what happens next.", group: "client" },
   { href: "/find/", label: "Find a lawyer", title: "Find a verified lawyer", job: "Directory with identical cards. Order: filter match, then alphabetical.", group: "client" },
   { href: "/for-lawyers/", label: "For lawyers", title: "For lawyers and law firms", job: "Get discovered, triage in a minute, stay ULAS-compliant.", group: "lawyer" },
   { href: "/app/inbox/", label: "Inbox", title: "Inbox", job: "Briefs sent to you. Accept as paid or pro bono, ask for more, or decline.", group: "lawyer" },

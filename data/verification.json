@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "sampleData": true,
+    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. Roll numbers use the SAMPLE- format so they cannot be mistaken for real ones."
+  },
+  "items": [
+    {
+      "id": "v01",
+      "name": "Beatriz Salazar",
+      "rollNo": "SAMPLE-0101",
+      "ibpId": "SAMPLE-IBP-2231",
+      "submittedOn": "2026-11-24",
+      "practiceAreas": [
+        "family"
+      ]
+    },
+    {
+      "id": "v02",
+      "name": "Victor Aguilar",
+      "rollNo": "SAMPLE-0102",
+      "ibpId": "SAMPLE-IBP-1187",
+      "submittedOn": "2026-11-23",
+      "practiceAreas": [
+        "criminal",
+        "labor"
+      ]
+    },
+    {
+      "id": "v03",
+      "name": "Rowena Santiago",
+      "rollNo": "SAMPLE-0103",
+      "ibpId": "SAMPLE-IBP-3302",
+      "submittedOn": "2026-11-21",
+      "practiceAreas": [
+        "estate"
+      ]
+    }
+  ]
+}

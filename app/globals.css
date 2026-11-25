@@ -1,21 +1,66 @@
-/* Base styles. Tokens live in design/tokens.css. */
+/* Base styles and a few shared classes. Tokens live in design/tokens.css. */
 *, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 html, body { margin: 0; padding: 0; }
 body {
   background: var(--bg); color: var(--ink);
   font-family: var(--font-text); font-size: var(--fs-md); line-height: 1.5;
   font-variant-numeric: tabular-nums;
 }
-a { color: var(--accent-dark); }
-.skip-link {
-  position: absolute; left: var(--s-3); top: -100px; z-index: 10;
-  padding: var(--s-2) var(--s-3); background: var(--surface); border-radius: var(--radius-sm); box-shadow: var(--shadow);
-}
+h1, h2, h3 { line-height: 1.2; text-wrap: balance; }
+a { color: var(--accent-dark); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+img { max-width: 100%; }
+
+.skip-link { position: absolute; left: var(--s-3); top: -100px; z-index: 50; padding: var(--s-2) var(--s-3); background: var(--surface); border-radius: var(--radius-sm); box-shadow: var(--shadow); }
 .skip-link:focus { top: var(--s-3); }
-.shell { display: flex; min-height: 100vh; }
-.main { flex: 1; min-width: 0; padding: 0 var(--s-5); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-@media (max-width: 767px) {
-  .shell { flex-direction: column; }
-  .main { padding: 0 var(--s-3); }
+
+/* Buttons. --accent means "act here" and is used only for the main action on a screen. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
+  min-height: var(--touch); padding: 0 var(--s-4); border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); font: inherit; font-weight: 650; text-decoration: none; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
 }
+.btn:hover { border-color: var(--muted); }
+.btn:active { transform: translateY(1px); }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; transform: none; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn-quiet { background: none; border-color: transparent; color: var(--accent-dark); text-decoration: underline; padding: 0 var(--s-2); }
+.btn-danger { color: var(--warn-ink); }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; }
+
+/* Forms */
+.field { display: grid; gap: var(--s-1); margin-bottom: var(--s-4); }
+.field > label, .field > legend, .label { font-weight: 650; }
+.hint { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+.input, .textarea, .select {
+  width: 100%; min-height: var(--touch); padding: var(--s-2) var(--s-3); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--surface); color: var(--ink); font: inherit;
+}
+.textarea { min-height: 160px; resize: vertical; line-height: 1.5; }
+.input:focus, .textarea:focus, .select:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.error { margin: 0; color: var(--warn-ink); font-size: var(--fs-sm); font-weight: 600; }
+
+/* Surfaces */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
+.stack > * + * { margin-top: var(--s-4); }
+.muted { color: var(--muted); }
+.small { font-size: var(--fs-sm); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.table th, .table td { padding: var(--s-2) var(--s-3); text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table th { position: sticky; top: 0; background: var(--surface); font-weight: 650; color: var(--muted); }
+.table tr:last-child td { border-bottom: 0; }
+.num { text-align: right !important; white-space: nowrap; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.page-in { animation: rise .24s var(--ease) both; }
+
+@media print {
+  body { background: #fff; color: #000; }
+  .no-print { display: none !important; }
+}
+@media (prefers-reduced-transparency: reduce) { .btn, .panel { backdrop-filter: none; } }

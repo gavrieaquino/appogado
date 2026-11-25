@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "sampleData": true,
+    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. Roll numbers use the SAMPLE- format so they cannot be mistaken for real ones."
+  },
+  "items": [
+    {
+      "lawyer": "l05",
+      "plan": "Solo",
+      "listPrice": 1099,
+      "foundingPrice": 750,
+      "foundingUntil": "2027-05-31",
+      "memberSince": "2026-09-01",
+      "nextBill": "2026-12-01",
+      "billing": "Monthly, cancel anytime",
+      "firmPlan": {
+        "listPrice": 799,
+        "foundingPrice": 550
+      }
+    }
+  ]
+}
