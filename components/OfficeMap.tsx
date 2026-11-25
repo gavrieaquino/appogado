@@ -48,6 +48,8 @@ export default function OfficeMap({ from, items, nearestId, bounds, labels }: Pr
       ref.current = { L, map, layer: L.layerGroup().addTo(map) };
       map.getContainer().setAttribute("aria-label", labels.region);
       map.getContainer().setAttribute("role", "region");
+      // The answer line above the map is its text summary; the list is the full alternative.
+      if (document.getElementById("near-answer")) map.getContainer().setAttribute("aria-describedby", "near-answer");
       setReady(true);
     });
     return () => { cancelled = true; ref.current?.map.remove(); ref.current = null; };
@@ -58,7 +60,7 @@ export default function OfficeMap({ from, items, nearestId, bounds, labels }: Pr
     if (!ready || !r) return;
     const { L, map, layer } = r;
     layer.clearLayers();
-    const accent = css("--accent");
+    const accent = css("--brand");
     const ink = css("--ink");
     const muted = css("--muted");
     const surface = css("--surface");
@@ -117,7 +119,7 @@ export default function OfficeMap({ from, items, nearestId, bounds, labels }: Pr
   return (
     <figure className={s.wrap}>
       <div ref={el} className={s.map} aria-busy={!ready} />
-      {!ready && <p className={s.loading} aria-hidden>…</p>}
+      {!ready && <p className={s.loading}><span className={s.skel} aria-hidden /><span className="sr-only">Loading map</span></p>}
       {tilesFailed && <p className={s.fail} role="status">{labels.tiles}</p>}
       <figcaption className={s.note}>{labels.note}</figcaption>
     </figure>

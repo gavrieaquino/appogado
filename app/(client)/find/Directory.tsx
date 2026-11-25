@@ -16,7 +16,7 @@ import NearYou, { type From } from "./NearYou";
 import s from "./find.module.css";
 
 // The map (and Leaflet with it) loads only when it is shown.
-const OfficeMap = dynamic(() => import("@/components/OfficeMap"), { ssr: false, loading: () => <div className={s.mapSkel} aria-hidden /> });
+const OfficeMap = dynamic(() => import("@/components/OfficeMap"), { ssr: false, loading: () => <div className={s.mapSkel} role="status"><span className="sr-only">Loading map</span></div> });
 
 const YEARS = [3, 5, 10, 15];
 
@@ -87,7 +87,7 @@ export default function Directory() {
       <header className={s.head}>
         <p className={s.kicker}>{t("near.pilot")}</p>
         <h1 className={s.title}>{t("fd.title")}</h1>
-        <p className={s.answer} aria-live="polite">{answer}</p>
+        <p className={s.answer} aria-live="polite" id="near-answer">{answer}</p>
         <p className="muted small">{t(from ? "fd.orderNear" : "fd.order")} <Term def={t("t.verified")}>{lang === "en" ? "What does verified mean?" : "Ano ang ibig sabihin ng beripikado?"}</Term></p>
       </header>
 

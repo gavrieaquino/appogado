@@ -31,6 +31,9 @@ The smoke test covers viewports, horizontal scroll, console errors, control heig
 - [ ] Every number traces back to `data/*.json` or `docs/ulas-rules.md`
 - [ ] CSV export escapes cells starting with `= + - @`
 
+## ui-ux-pro-max
+- [ ] For a new or changed screen, query the skill for the relevant concern (`--domain ux`) and record what was applied or rejected in `docs/ui-ux-review.md`
+
 ## Critic personas (run each as a separate review pass)
 1. **Strict judge** — is the answer above the fold? would a pitch judge get it in 10 seconds?
 2. **Domain expert (practising lawyer)** — does this match how a solo practice actually triages and logs pro bono?

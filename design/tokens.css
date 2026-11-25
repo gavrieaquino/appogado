@@ -1,20 +1,25 @@
 /* APPogado design tokens.
-   Structure follows the LAMBAT token set; values are placeholders until the brand
-   direction is set (open item M10, decision D12). Swap values here only. */
+   Structure follows the LAMBAT token set. Colours follow the ui-ux-pro-max "Accessible &
+   Ethical" recommendation (decision D25): trust navy for structure, one amber for actions.
+   Brand direction is still the owner's call (M10); swap values here only. */
 
 :root {
-  /* Brand. --accent has one job: "act here" (send brief, accept, log hours). */
-  --accent: #5b3fd9;
-  --accent-dark: #3f28a8;
-  --accent-tint: #ece8fb;
-  --accent-wash: #f6f4fd;
-  --on-accent: #ffffff;
+  /* Brand: navy carries structure (links, active nav, tags, meters, map markers, focus). */
+  --brand: #1e3a8a;
+  --brand-dark: #1e3a8a;
+  --brand-tint: #dbe4f7;
+  --brand-wash: #eff4fc;
+  --on-brand: #ffffff;
+  /* Act: amber has one job, "act here" (send brief, accept, log hours). Buttons only. */
+  --act: #b45309;       /* white text on it: 5.0:1 */
+  --act-dark: #92400e;
+  --on-act: #ffffff;
 
   /* Neutrals */
-  --ink: #16181d;
-  --muted: #4b5160;      /* 7.6:1 on --surface */
-  --line: #dadce0;
-  --bg: #f6f6f4;
+  --ink: #0f172a;
+  --muted: #475569;      /* 7.6:1 on --surface */
+  --line: #cbd5e1;
+  --bg: #f8fafc;
   --surface: #ffffff;
 
   /* Status (never used for ranking or prominence) */
@@ -39,7 +44,7 @@
   --radius: 16px;
   --radius-sm: 8px;
   --radius-pill: 999px;
-  --shadow: 0 2px 12px rgba(22, 24, 29, 0.12), 0 1px 2px rgba(22, 24, 29, 0.08);
+  --shadow: 0 2px 12px rgba(15, 23, 42, 0.10), 0 1px 2px rgba(15, 23, 42, 0.08);
 
   /* Motion: one ease for everything, short durations */
   --ease: cubic-bezier(0.3, 0.9, 0.3, 1);
@@ -57,11 +62,14 @@
     --line: #2d313a;
     --bg: #111317;
     --surface: #1a1d23;
-    --accent: #9d8bf0;
-    --accent-dark: #c2b6f7;
-    --accent-tint: #2a2446;
-    --accent-wash: #1f1b33;
-    --on-accent: #111317;
+    --brand: #93b4f5;
+    --brand-dark: #b9cdf8;
+    --brand-tint: #1c2a4d;
+    --brand-wash: #151f38;
+    --on-brand: #0b1220;
+    --act: #f59e0b;
+    --act-dark: #fbbf24;
+    --on-act: #111317;
     --info-bg: #14273f;  --info-ink: #b9d3f5;
     --warn-bg: #3a1f12;  --warn-ink: #f4c6ac;
     --ok-bg:   #12301c;  --ok-ink:   #b3e4c2;
@@ -74,11 +82,14 @@
   --line: #2d313a;
   --bg: #111317;
   --surface: #1a1d23;
-  --accent: #9d8bf0;
-  --accent-dark: #c2b6f7;
-  --accent-tint: #2a2446;
-  --accent-wash: #1f1b33;
-  --on-accent: #111317;
+  --brand: #93b4f5;
+  --brand-dark: #b9cdf8;
+  --brand-tint: #1c2a4d;
+  --brand-wash: #151f38;
+  --on-brand: #0b1220;
+  --act: #f59e0b;
+  --act-dark: #fbbf24;
+  --on-act: #111317;
   --info-bg: #14273f;  --info-ink: #b9d3f5;
   --warn-bg: #3a1f12;  --warn-ink: #f4c6ac;
   --ok-bg:   #12301c;  --ok-ink:   #b3e4c2;

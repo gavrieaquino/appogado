@@ -1,9 +1,9 @@
 .head { margin-bottom: var(--s-4); max-width: 680px; }
-.step { margin: 0 0 var(--s-1); font-size: var(--fs-sm); font-weight: 650; color: var(--accent-dark); }
+.step { margin: 0 0 var(--s-1); font-size: var(--fs-sm); font-weight: 650; color: var(--brand-dark); }
 .title { margin: 0 0 var(--s-3); font-size: var(--fs-lg); }
 .dots { display: flex; gap: 6px; padding: 0; margin: 0; list-style: none; }
 .dots li { width: 10px; height: 6px; border-radius: 3px; background: var(--line); transition: width var(--dur) var(--ease), background var(--dur) var(--ease); }
-.dots li[data-on] { background: var(--accent); }
+.dots li[data-on] { background: var(--brand); }
 .dots li[data-now] { width: 28px; }
 .col { max-width: 680px; }
 .consent { list-style: none; margin: var(--s-3) 0; padding: 0; display: grid; gap: var(--s-2); }
@@ -13,7 +13,7 @@
 .ynOpt { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 64px; min-height: var(--touch); padding: 0 var(--s-3); border: 1px solid var(--line); border-radius: 10px; font-weight: 650; cursor: pointer; background: var(--surface); }
 .ynOpt input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
 .ynOpt[data-on] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.ynOpt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ynOpt:has(input:focus-visible) { outline: 2px solid var(--brand); outline-offset: 2px; }
 .warn { padding: var(--s-2) var(--s-3); border-radius: var(--radius-sm); background: var(--warn-bg); color: var(--warn-ink); font-weight: 600; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
 .file { font: inherit; min-height: var(--touch); }

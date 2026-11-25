@@ -2,7 +2,7 @@
 .notice { display: grid; gap: var(--s-1); margin: var(--s-4) 0; padding: var(--s-3); border-radius: var(--radius-sm); background: var(--info-bg); color: var(--info-ink); font-size: var(--fs-sm); border-left: 4px solid currentColor; }
 .notice p { margin: 0; }
 .notice strong { display: block; }
-.honest { margin: var(--s-3) 0; padding: var(--s-3); border-radius: var(--radius-sm); background: var(--accent-wash); border: 1px solid var(--accent-tint); font-size: var(--fs-sm); }
+.honest { margin: var(--s-3) 0; padding: var(--s-3); border-radius: var(--radius-sm); background: var(--brand-wash); border: 1px solid var(--brand-tint); font-size: var(--fs-sm); }
 .honest > :first-child { margin-top: 0; }
 .honest > :last-child { margin-bottom: 0; }
 .answer { margin: 0 0 var(--s-2); font-size: var(--fs-lg); line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
@@ -14,6 +14,6 @@
 .pill { display: inline-flex; align-items: center; gap: var(--s-2); padding: var(--s-2) var(--s-4) var(--s-2) var(--s-2); border-radius: var(--radius-pill); background: var(--ink); color: var(--bg); font-size: var(--fs-sm); font-weight: 600; box-shadow: var(--shadow); }
 .ring { width: 28px; height: 28px; flex: none; }
 .ringTrack { stroke: color-mix(in srgb, var(--bg) 25%, transparent); }
-.ringBar { stroke: var(--accent-tint); transition: stroke-dashoffset var(--dur) var(--ease); }
+.ringBar { stroke: var(--brand-tint); transition: stroke-dashoffset var(--dur) var(--ease); }
 .pillText { display: grid; }
 .pillStep { font-weight: 400; opacity: .8; font-size: var(--fs-xs); }
