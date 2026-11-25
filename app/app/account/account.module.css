@@ -1,0 +1,7 @@
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); align-items: start; margin-top: var(--s-3); }
+.h2 { margin: 0 0 var(--s-3); font-size: 1.1rem; }
+.dl { margin: 0 0 var(--s-3); display: grid; gap: var(--s-2); }
+.dl dt { font-size: var(--fs-sm); color: var(--muted); font-weight: 650; }
+.dl dd { margin: 0; }
+.public { margin-top: var(--s-4); }
+@media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
