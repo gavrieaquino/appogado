@@ -1,5 +1,2 @@
-import Planned from "@/components/Planned";
-
-export default function Page() {
-  return <Planned href="/" />;
-}
+import Home from "./Home";
+export default function Page() { return <Home />; }

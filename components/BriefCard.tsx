@@ -1,6 +1,6 @@
 import type { Brief, Lang } from "@/lib/types";
 import { PRACTICE } from "@/lib/practice";
-import { translate } from "@/lib/i18n";
+import { translate } from "@/lib/copy";
 import { fmtDate } from "@/lib/demo";
 import s from "./BriefCard.module.css";
 

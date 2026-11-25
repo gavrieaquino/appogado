@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Lang, Lawyer } from "@/lib/types";
 import { AVAILABILITY, LANGUAGES, PRACTICE } from "@/lib/practice";
-import { translate } from "@/lib/i18n";
+import { translate } from "@/lib/copy";
 import { fmtDate } from "@/lib/demo";
 import { fullName } from "@/lib/data";
 import s from "./LawyerCard.module.css";
