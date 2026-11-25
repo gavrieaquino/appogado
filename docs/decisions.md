@@ -23,6 +23,11 @@ Newest last. Each entry: date, decision, reason, what would reverse it.
 | D17 | 2026-11-25 | Vitest added for the ULAS math, CSV, ordering and redaction; Playwright smoke script for routes, sizes and the end-to-end demo. | The tracker's numbers must be checkable; the redaction tests already caught two real bugs. | — |
 | D18 | 2026-11-25 | The lawyer side is English only in the prototype; the client side is fully EN/FIL (FIL draft). | Lawyers work in English; clients have low legal literacy. Vision principle 4 asks for both everywhere. | Pilot, or if pilot lawyers ask for it |
 | D19 | 2026-11-25 | ULAS Fund contribution cap uses the lowest figure found (50%). | Conservative: never tells a lawyer they are covered when they might not be. | M5 resolved |
+| D20 | 2026-11-25 | **Quezon City pilot first.** The directory and "Near you" cover Quezon City only. Every sample office is in QC; the sample firm's four lawyers share one Commonwealth office. A GPS position outside the pilot box is not used. | User asked to pilot in QC first. Keeps data, verification and outreach to one LGU. | Pilot results; next city chosen |
+| D21 | 2026-11-25 | Location stays on the device: GPS is asked for only on tap, kept in page memory, never stored, logged or put in a URL. A chosen barangay may go in the URL (coarse, shareable). Choosing an area needs no GPS. | Data Privacy Act; rule C11. | Legal review |
+| D22 | 2026-11-25 | **Ordering change (amends D9):** filter match, then straight-line distance from the user's point, then surname A to Z. Without a location, D9 applies unchanged. Cards stay identical and show distance as a fact. Only the user's own nearest matching office gets a dashed line on the map. | Distance is neutral and useful for in-person consultations; V6's example rule includes it. | Lawyer review of CPRA rules (M4) |
+| D23 | 2026-11-25 | Map: Leaflet 1.9.4 with OpenStreetMap's public tiles, loaded only when the map is shown (~42 KB gzipped plus tiles). | Lightest usable map for prepaid data. | **Expiry: replace OSM public tiles before the pilot** (their usage policy does not cover production traffic). Options: a paid tile provider or self-hosted tiles. |
+| D24 | 2026-11-25 | Office and barangay points are approximate sample coordinates; the pilot box is a bounding box, not the city boundary. | No real office data yet. | Pilot: lawyers pin their office at sign-up, checked in verification; QC boundary and barangay list from PSA/NAMRIA or OSM (licence to confirm) |
 
 ## Open items
 
@@ -41,3 +46,6 @@ Newest last. Each entry: date, decision, reason, what would reverse it.
 | M12 | Payment model for paid consultations | Team + lawyer | Default in D10 |
 | M13 | Interview a real QC solo practitioner and a first-time client | Team | Open |
 | M14 | SC ULAS Portal: launch date, whether it accepts imports | Team | Open, blocking (D8) |
+| M15 | Production map tiles to replace OSM public tiles (D23) | Team | Open, needed before pilot |
+| M16 | Real office locations: lawyer-pinned at sign-up, checked in verification (D24) | Team | Open, needed before pilot |
+| M17 | QC boundary and barangay list source and licence (D24) | Team | Open, needed before pilot |

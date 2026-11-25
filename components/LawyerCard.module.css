@@ -12,3 +12,4 @@
 .facts { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-3); margin: var(--s-1) 0 0; font-size: var(--fs-sm); }
 .facts dt { color: var(--muted); font-size: var(--fs-xs); }
 .facts dd { margin: 0; }
+.away { color: var(--accent-dark); white-space: nowrap; }

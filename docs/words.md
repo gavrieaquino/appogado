@@ -16,6 +16,7 @@ and needs a native speaker and a lawyer to check it (open item M9).
 | Permission | consent | pahintulot | Your yes to a specific use of your information. You can say no to each item. |
 | Hiding details | redaction | pagtatakip ng detalye | Hiding names, addresses and case numbers before the AI reads your text. |
 | Notice | legal information, not legal advice | impormasyong legal, hindi payong legal | This explains the law in general. It is not advice for your case and does not make anyone your lawyer. |
+| Distance | straight-line distance | tuwid na layo | The distance as the crow flies, not travel time by road. |
 | Paid work | paid matter | may bayad na usapin | A matter you pay your lawyer for directly. APPogado takes no share. |
 
 ## Words to avoid

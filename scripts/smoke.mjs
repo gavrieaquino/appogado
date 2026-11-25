@@ -25,17 +25,22 @@ const server = createServer((req, res) => {
 }).listen(0);
 const BASE = `http://localhost:${server.address().port}`;
 
-const ROUTES = ["/", "/describe/", "/describe/review/", "/sent/", "/find/", "/find/?area=family&city=Quezon%20City", "/find/l05/", "/for-lawyers/",
+const ROUTES = ["/", "/describe/", "/describe/review/", "/sent/", "/find/", "/find/?area=family&near=Cubao%20(Socorro)", "/find/l05/", "/for-lawyers/",
   "/app/inbox/", "/app/inbox/brief/?id=b03", "/app/ulas/", "/app/ulas/report/", "/app/firm/", "/app/bookings/", "/app/account/", "/admin/verification/"];
 const SIZES = [[1440, 900], [390, 844], [375, 667]];
 const failures = [];
 const fail = (m) => { failures.push(m); console.log("  FAIL", m); };
 
 const browser = await chromium.launch();
+// OpenStreetMap tiles are not reachable from CI sandboxes; serve a blank tile so the map code
+// still runs. A real browser loads the real tiles.
+const BLANK_PNG = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=", "base64");
+const stubTiles = (ctx) => ctx.route("https://tile.openstreetmap.org/**", (r) => r.fulfill({ status: 200, contentType: "image/png", body: BLANK_PNG }));
 
 // 1. Every route, every size
 for (const [w, h] of SIZES) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h } });
+  await stubTiles(ctx);
   const page = await ctx.newPage();
   const errs = [];
   page.on("console", (m) => { if (m.type() === "error") errs.push(m.text()); });
@@ -144,7 +149,61 @@ const shot = async (page, name) => { await page.waitForTimeout(900); await page.
   await ctx.close();
 }
 
-// 3. Phone: bottom sheet on the brief and the tab bar
+// 3. Near you (Quezon City pilot): GPS inside QC, area picker, outside QC, denied, phone map
+{
+  const DILIMAN = { latitude: 14.656, longitude: 121.065 };
+  const run = async (name, opts, fn) => {
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2, ...opts });
+    await stubTiles(ctx);
+    const page = await ctx.newPage();
+    const errs = [];
+    page.on("pageerror", (e) => errs.push(String(e)));
+    try { await fn(page); if (errs.length) throw new Error(errs.join(" | ")); console.log(`ok   near: ${name}`); }
+    catch (e) { fail(`near ${name}: ${String(e).split("\n")[0]}`); }
+    await ctx.close();
+  };
+  await run("GPS in Diliman finds the nearest family office and draws the map", { permissions: ["geolocation"], geolocation: DILIMAN }, async (page) => {
+    await page.goto(BASE + "/find/?area=family");
+    await page.getByRole("button", { name: "Use my location" }).click();
+    await page.getByText(/Nearest office for family matters: Dela Paz Law Office, Diliman/).waitFor();
+    await page.locator(".leaflet-container").waitFor();
+    const markers = await page.locator("path.leaflet-interactive").count();
+    if (markers < 11) throw new Error(`expected 11+ office markers, got ${markers}`);
+    if (page.url().includes("14.6") || page.url().includes("121.0")) throw new Error("GPS position leaked into the URL");
+    const stored = await page.evaluate(() => JSON.stringify({ ...localStorage, ...sessionStorage }));
+    if (/14\.65|121\.06/.test(stored)) throw new Error("GPS position stored in the browser");
+    const first = await page.locator("ul li article h2").first().innerText();
+    if (!/Dela Paz/.test(first)) throw new Error(`first card should be the nearest family lawyer, got ${first}`);
+    await shot(page, "17-near-you-map");
+  });
+  await run("choosing an area needs no GPS and goes in the URL", {}, async (page) => {
+    await page.goto(BASE + "/find/");
+    await page.getByLabel("Your barangay or area in Quezon City").selectOption("Fairview");
+    await page.getByText(/Nearest office: Fernandez Law Office, Fairview/).waitFor();
+    if (!page.url().includes("near=Fairview")) throw new Error("area not in URL");
+  });
+  await run("GPS outside Quezon City is not used", { permissions: ["geolocation"], geolocation: { latitude: 14.5547, longitude: 121.0244 } }, async (page) => {
+    await page.goto(BASE + "/find/");
+    await page.getByRole("button", { name: "Use my location" }).click();
+    await page.getByText(/outside Quezon City/).waitFor();
+    if (await page.locator(".leaflet-container").count()) throw new Error("map shown for a location outside the pilot");
+  });
+  await run("denied location falls back to choosing an area", {}, async (page) => {
+    await page.goto(BASE + "/find/");
+    await page.getByRole("button", { name: "Use my location" }).click();
+    await page.getByText(/location is off or was not allowed/).waitFor({ timeout: 15000 });
+  });
+  await run("phone shows a List/Map toggle and loads the map only on demand", { viewport: { width: 390, height: 844 }, hasTouch: true }, async (page) => {
+    await page.goto(BASE + "/find/?near=Cubao%20(Socorro)");
+    await page.getByText(/Nearest office: Bautista Law Office, Cubao/).waitFor();
+    if (await page.locator(".leaflet-container").count()) throw new Error("map loaded before it was asked for");
+    await page.getByRole("radio", { name: "Map" }).check();
+    await page.locator(".leaflet-container").waitFor();
+    await shot(page, "18-phone-near-you-map");
+  });
+}
+
+// 4. Phone: bottom sheet on the brief and the tab bar
 {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, hasTouch: true });
   const page = await ctx.newPage();

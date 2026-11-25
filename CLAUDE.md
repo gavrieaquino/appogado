@@ -43,6 +43,7 @@ process real users.
 | Next.js 15, App Router, `output: "export"` | Routing for ~12 screens; same framework as the old capstone app so screens port to the pilot. Static export = no server. |
 | TypeScript | Sample-data shapes become the pilot's types. |
 | CSS variables (`design/tokens.css`) + CSS Modules | One token set, no UI library, small pages for prepaid mobile data. |
+| Leaflet 1.9.4 + OpenStreetMap tiles | "Near you" map in the QC pilot. Loaded only when the map is shown. OSM public tiles are prototype-only: replace before pilot (D23, M15). |
 | `data/*.json` | Sample data only. |
 | **Not in this phase** | Supabase, auth, AI API, Mantine/any component library. No real data to hold. Revisit at pilot (see `docs/decisions.md`). |
 

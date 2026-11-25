@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "sampleData": true,
+    "note": "APPROXIMATE centre points of some Quezon City barangays, for choosing an area without GPS. Not survey data. Pilot target: the PSA barangay list with official boundaries."
+  },
+  "pilotArea": {
+    "name": "Quezon City",
+    "bounds": [
+      [
+        14.585,
+        120.985
+      ],
+      [
+        14.775,
+        121.135
+      ]
+    ],
+    "note": "Bounding box, not the city boundary. It also covers parts of neighbouring cities."
+  },
+  "items": [
+    {
+      "name": "Bagong Silangan",
+      "lat": 14.7012,
+      "lng": 121.106
+    },
+    {
+      "name": "Bagumbayan",
+      "lat": 14.609,
+      "lng": 121.08
+    },
+    {
+      "name": "Bahay Toro",
+      "lat": 14.658,
+      "lng": 121.023
+    },
+    {
+      "name": "Batasan Hills",
+      "lat": 14.6824,
+      "lng": 121.098
+    },
+    {
+      "name": "Commonwealth",
+      "lat": 14.6976,
+      "lng": 121.0886
+    },
+    {
+      "name": "Cubao (Socorro)",
+      "lat": 14.6197,
+      "lng": 121.0536
+    },
+    {
+      "name": "Fairview",
+      "lat": 14.7307,
+      "lng": 121.0592
+    },
+    {
+      "name": "Galas",
+      "lat": 14.6133,
+      "lng": 121.0122
+    },
+    {
+      "name": "Holy Spirit",
+      "lat": 14.6829,
+      "lng": 121.075
+    },
+    {
+      "name": "Kamuning",
+      "lat": 14.629,
+      "lng": 121.0381
+    },
+    {
+      "name": "Loyola Heights",
+      "lat": 14.6386,
+      "lng": 121.0773
+    },
+    {
+      "name": "Novaliches Proper",
+      "lat": 14.7203,
+      "lng": 121.0371
+    },
+    {
+      "name": "Payatas",
+      "lat": 14.711,
+      "lng": 121.101
+    },
+    {
+      "name": "Project 4",
+      "lat": 14.6246,
+      "lng": 121.0715
+    },
+    {
+      "name": "San Bartolome",
+      "lat": 14.711,
+      "lng": 121.028
+    },
+    {
+      "name": "Santa Mesa Heights",
+      "lat": 14.6268,
+      "lng": 121.0066
+    },
+    {
+      "name": "Tandang Sora",
+      "lat": 14.6765,
+      "lng": 121.045
+    },
+    {
+      "name": "Teachers Village",
+      "lat": 14.6418,
+      "lng": 121.0622
+    },
+    {
+      "name": "UP Campus (Diliman)",
+      "lat": 14.6549,
+      "lng": 121.0645
+    }
+  ]
+}
