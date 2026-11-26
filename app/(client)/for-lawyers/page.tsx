@@ -26,7 +26,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className={s.job}>
+      <section className={`${s.job} reveal`}>
         <div>
           <p className={s.n}>1 · Get discovered</p>
           <h2 className={s.h2}>A listing that is the same for everyone</h2>
@@ -35,7 +35,7 @@ export default function Page() {
         <div className={s.preview}><LawyerCard lawyer={card} lang="en" /></div>
       </section>
 
-      <section className={s.job}>
+      <section className={`${s.job} reveal`}>
         <div>
           <p className={s.n}>2 · Triage in a minute</p>
           <h2 className={s.h2}>Every matter arrives as a one-page brief</h2>
@@ -44,7 +44,7 @@ export default function Page() {
         <div className={s.preview}><BriefCard brief={brief} headingLevel={3} /></div>
       </section>
 
-      <section className={s.job}>
+      <section className={`${s.job} reveal`}>
         <div>
           <p className={s.n}>3 · Stay ULAS-compliant</p>
           <h2 className={s.h2}>Your 60 hours, counted as you go</h2>
@@ -57,7 +57,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="pricing" className={s.pricing}>
+      <section id="pricing" className={`${s.pricing} reveal`}>
         <h2 className={s.h2}>Pricing</h2>
         <div className={s.plans}>
           <div className="panel">

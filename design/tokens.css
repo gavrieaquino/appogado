@@ -12,8 +12,10 @@
   --brand-wash: #f5f3fc;
   --on-brand: #ffffff;
   /* Act here: LAMBAT gold. Ink text on it (9.7:1). */
-  --act: #efbe01;
-  --act-dark: #c99f00;
+  /* Third colour (D32): soft gold, solid accents only, never stripes, never small text. */
+  --act: #e9b949;
+  --act-dark: #c9962a;
+  --act-tint: #fbf1d9;
   --on-act: #141a2e;
   --gold: var(--act);
 
@@ -60,6 +62,23 @@
   --dur-fast: 0.2s;
   --dur: 0.3s;
 
+  /* Springs (decision D31): damped-spring curves as CSS linear(), no animation library.
+     Spatial = position and size (may overshoot slightly). Effects = opacity and colour (never overshoot).
+     Generated from x(t) = 1 - e^(-zwt)(cos(wd t) + zw/wd sin(wd t)); see gis-ui-kit docs/motion.md. */
+  --spring-spatial-fast: linear(0, 0.044, 0.148, 0.279, 0.415, 0.544, 0.657, 0.753, 0.83, 0.889, 0.934, 0.966, 0.988, 1.002, 1.01, 1.014, 1.015, 1.015, 1.013, 1.011, 1.009, 1.007, 1.005, 1.004, 1);
+  --spring-spatial-fast-ms: 300ms;
+  --spring-spatial: linear(0, 0.061, 0.202, 0.375, 0.548, 0.702, 0.827, 0.921, 0.985, 1.026, 1.047, 1.054, 1.052, 1.046, 1.036, 1.027, 1.018, 1.011, 1.005, 1.002, 0.999, 0.998, 0.997, 0.997, 1);
+  --spring-spatial-ms: 540ms;
+  --spring-spatial-slow: linear(0, 0.054, 0.181, 0.338, 0.498, 0.644, 0.766, 0.862, 0.933, 0.982, 1.013, 1.03, 1.037, 1.038, 1.035, 1.029, 1.023, 1.017, 1.012, 1.007, 1.004, 1.002, 1, 0.999, 1);
+  --spring-spatial-slow-ms: 780ms;
+  --ease-effects: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);
+  --effects-ms: 200ms;
+
+  /* Density: client pages are spacious; lawyer pages set [data-density="dense"] (decision D30). */
+  --gap: var(--s-4);
+  --card-pad: var(--s-4);
+
   /* Shell */
   --nav-w: 232px;
   --nav-w-closed: 64px;
@@ -81,8 +100,9 @@
     --brand-tint: #2a2148;
     --brand-wash: #1e1834;
     --on-brand: #120d24;
-    --act: #efbe01;
-    --act-dark: #ffd43b;
+    --act: #e9b949;
+    --act-dark: #f2cc6b;
+    --act-tint: #3a2f14;
     --on-act: #141a2e;
     --info-bg: #2a2148;  --info-ink: #d4c8fa;
     --warn-bg: #3a1f12;  --warn-ink: #f4c6ac;
@@ -101,8 +121,9 @@
   --brand-tint: #2a2148;
   --brand-wash: #1e1834;
   --on-brand: #120d24;
-  --act: #efbe01;
-  --act-dark: #ffd43b;
+  --act: #e9b949;
+  --act-dark: #f2cc6b;
+  --act-tint: #3a2f14;
   --on-act: #141a2e;
   --info-bg: #2a2148;  --info-ink: #d4c8fa;
   --warn-bg: #3a1f12;  --warn-ink: #f4c6ac;
@@ -117,4 +138,12 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Lawyer side: more on screen, same system (D30) */
+[data-density="dense"] { --gap: var(--s-3); --card-pad: var(--s-3); --fs-lg: 1.375rem; }
+
+/* Reduced motion: every spring and ease resolves instantly */
+@media (prefers-reduced-motion: reduce) {
+  :root { --spring-spatial-fast-ms: 0ms; --spring-spatial-ms: 0ms; --spring-spatial-slow-ms: 0ms; --effects-ms: 0ms; }
 }

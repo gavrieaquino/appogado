@@ -76,12 +76,14 @@ Before calling work done: `npm run lint && npm test && npm run check:compliance 
 **Layout and behaviour**
 - Answer first: every lawyer screen opens with the one line that answers its question
   ("22 of 60 hours. 15-hour minimum met. 412 days left.").
-- Purple `--brand` carries structure (rail, links, primary pill buttons, markers). Gold `--act` has one job, "act here": nearest-office numbers, the nav tick, the 14 px band. Gold is never small text.
+- Purple `--brand` carries structure (rail, links, primary pill buttons, markers). Soft gold `--act` (#E9B949) is the third colour: "act here" and highlights (nearest-office numbers, the nav tick, the 4 px accent bar on answer cards, pills on `--act-tint`). Solid only, never stripes, never small text (D32).
 - Grey page, white cards with one shadow, display face on every number (gis-ui-kit).
 - Never disable a button until a form is valid: `aria-disabled`, validate on click, explain inline, move focus (D26).
 - Nothing covers the thing it explains (popovers, tour cards).
 - Lawyer directory entries are identical. Order: filter match, then distance from the user (if they set a location), then name. Never touched by payment.
-- Map pages are full-bleed with a card column (sheet on phones) and the answer card first (D29).
+- Map pages are full-bleed with a card column (snap sheet on phones: peek / half / full) and the answer card first (D29, D31).
+- One look, two densities: client pages spacious, lawyer pages dense (`data-density`). Lawyer home is the `/app/` bento (D30).
+- Motion uses the spring tokens in `design/tokens.css` (D31): one hero motion per screen, transforms and opacity only, nothing that only decorates.
 
 **Accessibility**
 - 44 px touch targets, 4.5:1 text contrast, labelled navigation (no icon-only nav).

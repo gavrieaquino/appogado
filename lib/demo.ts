@@ -1,6 +1,7 @@
 // Fixed demo date so every number stays the same during a pitch (decision D16).
 export const DEMO_TODAY = "2026-11-25";
-export const demoToday = () => new Date(`${DEMO_TODAY}T00:00:00+08:00`);
+// Noon Manila time, so the date is the same in UTC and every day count is stable.
+export const demoToday = () => new Date(`${DEMO_TODAY}T12:00:00+08:00`);
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 /** "2026-11-25" → "25 Nov 2026". Works on ISO dates and date-times, no locale or timezone drift. */

@@ -20,6 +20,7 @@ The intake is one page (`/describe`) with three steps: consent, story, personal-
 | Route | Screen | Job |
 |---|---|---|
 | `/for-lawyers` | Lawyer landing | Get discovered, triage in a minute, stay ULAS-compliant. Pricing. |
+| `/app/` | Today (bento) | Answer line; tiles for ULAS, new briefs, next appointment, partner clinics, firm, plan |
 | `/app/inbox` | Inbox | Queue of briefs sent to this lawyer |
 | `/app/inbox/brief/?id=` | Brief review | Accept (paid / pro bono) · decline · ask for more; conflict check. A query parameter, not a path, so briefs made in the browser demo open too. |
 | `/app/ulas` | ULAS dashboard | Hours vs 60, personal minimum, days left, hour log, report export |

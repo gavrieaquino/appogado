@@ -25,7 +25,7 @@ const server = createServer((req, res) => {
 }).listen(0);
 const BASE = `http://localhost:${server.address().port}`;
 
-const ROUTES = ["/", "/describe/", "/describe/review/", "/sent/", "/find/", "/find/?area=family&near=Cubao%20(Socorro)", "/find/l05/", "/for-lawyers/",
+const ROUTES = ["/", "/app/", "/describe/", "/describe/review/", "/sent/", "/find/", "/find/?area=family&near=Cubao%20(Socorro)", "/find/l05/", "/for-lawyers/",
   "/app/inbox/", "/app/inbox/brief/?id=b03", "/app/ulas/", "/app/ulas/report/", "/app/firm/", "/app/bookings/", "/app/account/", "/admin/verification/"];
 const SIZES = [[1440, 900], [390, 844], [375, 667]];
 const failures = [];
@@ -207,17 +207,53 @@ const shot = async (page, name) => { await page.waitForTimeout(900); await page.
     await page.goto(BASE + "/find/?near=Cubao%20(Socorro)");
     await page.locator("#mp-answer").getByText("Bautista Law Office, Cubao").waitFor();
     const handle = page.getByRole("button", { name: "Show offices" });
-    if ((await handle.getAttribute("aria-expanded")) !== "false") throw new Error("sheet should start closed");
+    if ((await handle.getAttribute("aria-expanded")) !== "false") throw new Error("sheet should start at peek");
     if (!(await page.locator("#mp-answer").isVisible())) throw new Error("answer not visible in the peek");
     await shot(page, "18-phone-near-you-peek");
-    await handle.click();
-    await page.getByRole("button", { name: "Show the map" }).waitFor();
+    await handle.click(); // peek -> half
+    await page.getByRole("button", { name: "Show all offices" }).waitFor();
     await page.locator("#row-o-l01 button").first().waitFor({ state: "visible" });
-    await shot(page, "19-phone-near-you-open");
+    await shot(page, "19-phone-near-you-half");
+    await page.getByRole("button", { name: "Show all offices" }).click(); // half -> full
+    await page.getByRole("button", { name: "Show the map" }).waitFor();
+    await shot(page, "20-phone-near-you-full");
+    // drag down hard from full: a flick moves one snap down (full -> half)
+    const box = await page.getByRole("button", { name: "Show the map" }).boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + 10);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2, box.y + 200, { steps: 2 });
+    await page.mouse.up();
+    await page.getByRole("button", { name: "Show all offices" }).waitFor();
   });
 }
 
-// 4. Phone: bottom sheet on the brief and the tab bar
+// 4. Lawyer Today (bento) and a reduced-motion pass
+{
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
+  const page = await ctx.newPage();
+  try {
+    await page.goto(BASE + "/app/");
+    await page.getByRole("heading", { name: /4 new briefs, 2 urgent\. 22 of 60 ULAS hours/ }).waitFor();
+    if ((await page.locator("section[aria-labelledby^=t-]").count()) !== 6) throw new Error("expected 6 bento tiles");
+    await shot(page, "21-lawyer-today");
+    console.log("ok   today: bento with answer line");
+  } catch (e) { fail(`today: ${String(e).split("\n")[0]}`); }
+  await ctx.close();
+  const rm = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce", hasTouch: true });
+  const p2 = await rm.newPage();
+  try {
+    await p2.goto(BASE + "/app/");
+    const moving = await p2.evaluate(() => document.getAnimations().filter((a) => a.playState === "running" && (a.effect?.getComputedTiming().duration ?? 0) > 1).length);
+    if (moving) throw new Error(`${moving} animations running under reduced motion`);
+    await p2.goto(BASE + "/find/?near=Cubao%20(Socorro)");
+    await p2.getByRole("button", { name: "Show offices" }).click();
+    await p2.getByRole("button", { name: "Show all offices" }).waitFor();
+    console.log("ok   reduced motion: no running animations, sheet still works");
+  } catch (e) { fail(`reduced motion: ${String(e).split("\n")[0]}`); }
+  await rm.close();
+}
+
+// 5. Phone: bottom sheet on the brief and the tab bar
 {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, hasTouch: true });
   const page = await ctx.newPage();

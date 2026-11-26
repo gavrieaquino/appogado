@@ -2,6 +2,8 @@
 
 Newest first. One line each: what happened, what rule it became.
 
+- 2026-11-26 — The new snap sheet rendered 1029 px wide on a 390 px phone: the page's own `.col` and the sheet's `.sheet` had equal specificity and the page won. The smoke drag test caught it. Rule: a reusable positioned component raises its own selector specificity (`aside.sheet`).
+- 2026-11-26 — The demo clock at midnight Manila was the previous day in UTC, so "today" showed 24 Nov and days-left differed by one between screens. Rule: fixed demo times are set at noon local.
 - 2026-11-25 — The user said the UI was "not good at all" and asked whether the LAMBAT inspiration had been read. Only the summary had; the LAMBAT source (tokens, shell, answer card, map page) had not, and the UI used none of its visual system. Rule: read a reference's source before building, build its kit first (`gis-ui-kit`), then follow its build order.
 - 2026-11-25 — A selected map office re-centred the map whenever it was not well inside the view, pushing the other nearest offices off-screen. Rule: pan only when the selection is actually out of view.
 - 2026-11-25 — The status island measured its own clipped width and stayed truncated. Rule: measure natural content width against the available width, never the box being resized.

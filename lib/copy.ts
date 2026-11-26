@@ -217,6 +217,7 @@ const D = {
   "mp.filters": { en: "Filters", fil: "Mga filter" },
   "mp.links": { en: "Go to", fil: "Pumunta sa" },
   "mp.sheetOpen": { en: "Show offices", fil: "Ipakita ang mga opisina" },
+  "mp.sheetAll": { en: "Show all offices", fil: "Ipakita lahat ng opisina" },
   "mp.sheetClose": { en: "Show the map", fil: "Ipakita ang mapa" },
   "mp.iLoading": { en: "Loading the map", fil: "Nilo-load ang mapa" },
   "mp.iSet": { en: "Set your location to find the nearest office", fil: "Itakda ang lokasyon mo para mahanap ang pinakamalapit na opisina" },

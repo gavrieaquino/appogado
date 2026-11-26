@@ -19,6 +19,7 @@ import Term from "@/components/Term";
 import Icon from "@/components/Icon";
 import LangToggle from "@/components/LangToggle";
 import type { MapRow } from "@/components/OfficeMap";
+import SnapSheet, { type Snap } from "@/components/SnapSheet";
 import s from "./map.module.css";
 
 const OfficeMap = dynamic(() => import("@/components/OfficeMap"), { ssr: false });
@@ -99,11 +100,11 @@ export default function MapPage() {
 
   const areaLabel = f.area ? PRACTICE[f.area][lang].toLowerCase() : "";
 
-  // Phone sheet: peek = handle + answer card height (measured), velocity drag on the handle.
-  const colRef = useRef<HTMLElement>(null);
+  // Phone sheet (SnapSheet): peek = handle + answer card height, measured; half and full above it.
   const acRef = useRef<HTMLElement>(null);
-  const [sheetOpen, setSheetOpen] = useState(false);
+  const [snap, setSnap] = useState<Snap>("peek");
   const [peek, setPeek] = useState(300);
+  const [sheetH, setSheetH] = useState(0);
   const [phone, setPhone] = useState(false);
   useLayoutEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
@@ -114,23 +115,11 @@ export default function MapPage() {
     if (acRef.current) ro.observe(acRef.current);
     return () => { mq.removeEventListener("change", apply); ro.disconnect(); };
   }, []);
-  const drag = useRef<{ y: number; t: number; moved: boolean } | null>(null);
-  const [dragY, setDragY] = useState<number | null>(null);
-  const onDown = (e: React.PointerEvent) => { drag.current = { y: e.clientY, t: performance.now(), moved: false }; (e.target as Element).setPointerCapture?.(e.pointerId); };
-  const onMove = (e: React.PointerEvent) => { if (!drag.current) return; const dy = e.clientY - drag.current.y; if (Math.abs(dy) > 4) drag.current.moved = true; setDragY(dy); };
-  const onUp = (e: React.PointerEvent) => {
-    const d = drag.current; drag.current = null; setDragY(null);
-    if (!d || !d.moved) return;
-    const dy = e.clientY - d.y, v = dy / Math.max(1, performance.now() - d.t);
-    setSheetOpen(Math.abs(v) > 0.4 ? v < 0 : sheetOpen ? dy < 80 : dy < -80);
-    if (d.moved) (e.target as HTMLElement).dataset.dragged = "1";
-  };
-  useEffect(() => { if (colRef.current) colRef.current.scrollTop = 0; }, [sheetOpen]);
 
   // Selecting an office (row or marker) opens its row and, on phones, the sheet.
   const select = (id: string) => {
     setOpenId(id);
-    if (phone) setSheetOpen(true);
+    if (phone && snap === "peek") setSnap("half");
     requestAnimationFrame(() => document.getElementById(`row-${id}`)?.scrollIntoView({ block: "nearest", behavior: "smooth" }));
   };
 
@@ -165,17 +154,10 @@ export default function MapPage() {
     return () => document.removeEventListener("keydown", onKey);
   }, [drawer]);
 
-  const colStyle = { "--peek": `${peek}px`, ...(dragY !== null ? { transform: `translateY(calc(${sheetOpen ? "0px" : `100% - ${peek}px`} + ${dragY}px))`, transition: "none" } : {}) } as React.CSSProperties;
-
   return (
     <div className={s.mp}>
-      <aside ref={colRef} className={`${s.col} ${phone && !sheetOpen ? s.closed : ""}`} style={colStyle} aria-label={t("mp.offices")}>
-        <button type="button" className={s.handle} aria-expanded={sheetOpen}
-          onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp}
-          onClick={(e) => { const el = e.currentTarget; if (el.dataset.dragged) { delete el.dataset.dragged; return; } setSheetOpen((o) => !o); }}>
-          <span className={s.grip} aria-hidden />
-          <span className={s.handleT}>{sheetOpen ? t("mp.sheetClose") : t("mp.sheetOpen")}</span>
-        </button>
+      <SnapSheet enabled={phone} className={s.col} peek={peek} snap={snap} onSnap={setSnap} onVisible={setSheetH} ariaLabel={t("mp.offices")}
+        labels={{ peek: t("mp.sheetOpen"), half: t("mp.sheetAll"), full: t("mp.sheetClose") }}>
 
         <section ref={acRef} className={s.ac} aria-labelledby="mp-q">
           <div className={s.eyebrow}>
@@ -271,9 +253,9 @@ export default function MapPage() {
           </ul>
           <p className={s.src}>{t("mp.src")} {t("near.privacy")}</p>
         </section>
-      </aside>
+      </SnapSheet>
 
-      <div className={s.side}>
+      <div className={s.side} style={{ "--sheet-h": phone ? `${sheetH}px` : "0px" } as React.CSSProperties}>
         <OfficeMap
           from={from}
           rows={mapRows}
@@ -281,7 +263,7 @@ export default function MapPage() {
           hoverId={hoverId}
           selectedId={openId}
           bounds={pilotArea.bounds}
-          padBottom={phone ? peek : 0}
+          padBottom={phone ? sheetH : 0}
           onHover={setHoverId}
           onSelect={select}
           onReady={() => setMapReady(true)}
