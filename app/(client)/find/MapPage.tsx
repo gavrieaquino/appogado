@@ -11,6 +11,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { fullName, lawyers, offices, pilotArea, places } from "@/lib/data";
 import { search, type Filters } from "@/lib/directory";
 import { distanceKm, fmtKm, inBounds } from "@/lib/geo";
+import { withBase } from "@/lib/demo";
 import { AVAILABILITY, LANGUAGES, PRACTICE, PRACTICE_KEYS } from "@/lib/practice";
 import { useT } from "@/lib/i18n";
 import { resetDemo, useDemo } from "@/lib/store";
@@ -304,7 +305,7 @@ export default function MapPage() {
             <div className={s.links}>
               <Link href="/describe/">{t("home.cta")}</Link>
               <Link href="/app/inbox/">{t("foot.lawyerSideShort")}</Link>
-              <button type="button" className="btn-quiet" onClick={() => { resetDemo(); window.location.assign("/find/"); }}>{t("foot.reset")}</button>
+              <button type="button" className="btn-quiet" onClick={() => { resetDemo(); window.location.assign(withBase("/find/")); }}>{t("foot.reset")}</button>
             </div>
           </div>
         </div>

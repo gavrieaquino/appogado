@@ -12,3 +12,6 @@ export function fmtDate(iso: string): string {
 export const fmtHours = (h: number) => `${Number.isInteger(h) ? h : h.toFixed(1)} ${h === 1 ? "hour" : "hours"}`;
 export const fmtNum = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 export const peso = (n: number) => `₱${n.toLocaleString("en-PH")}`;
+
+/** Prefix for full-page navigations (window.location); Next's Link and router add it themselves. */
+export const withBase = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;

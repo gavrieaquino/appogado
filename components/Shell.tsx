@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { resetDemo } from "@/lib/store";
 import { useT, type Key } from "@/lib/i18n";
-import { DEMO_TODAY, fmtDate } from "@/lib/demo";
+import { DEMO_TODAY, fmtDate, withBase } from "@/lib/demo";
 import LangToggle from "./LangToggle";
 import Icon, { type IconName } from "./Icon";
 import s from "./Shell.module.css";
@@ -102,7 +102,7 @@ export default function Shell({ audience, items, children }: Props) {
           <div className={s.lang}><LangToggle compact tone="brand" /></div>
           <Link href={other.href} className={s.item} title={other.text}><Icon name="swap" /><span className={s.full}>{other.short}</span></Link>
           <button type="button" className={s.item} title={t("foot.reset")}
-            onClick={() => { resetDemo(); window.location.assign(audience === "client" ? "/" : "/app/inbox/"); }}>
+            onClick={() => { resetDemo(); window.location.assign(withBase(audience === "client" ? "/" : "/app/")); }}>
             <Icon name="reset" /><span className={s.full}>{t("foot.reset")}</span>
           </button>
           <p className={s.meta}>Demo date {fmtDate(DEMO_TODAY)}</p>
@@ -119,7 +119,7 @@ export default function Shell({ audience, items, children }: Props) {
         {!full && (
           <footer className={`${s.pageFoot} no-print`}>
             <Link href={other.href}>{other.text}</Link>
-            <button type="button" className="btn-quiet" onClick={() => { resetDemo(); window.location.assign(audience === "client" ? "/" : "/app/inbox/"); }}>{t("foot.reset")}</button>
+            <button type="button" className="btn-quiet" onClick={() => { resetDemo(); window.location.assign(withBase(audience === "client" ? "/" : "/app/")); }}>{t("foot.reset")}</button>
             <span>Demo date {fmtDate(DEMO_TODAY)}</span>
             <span>{t("foot.draft")}</span>
           </footer>
