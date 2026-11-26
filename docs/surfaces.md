@@ -31,7 +31,8 @@ of prototype scope.
 - **Job:** find a verified lawyer who handles this kind of matter.
 - **Answer-first line:** "12 verified lawyers handle family matters in Quezon City."
 - **Card:** name, verification status + date, practice areas (separate tags), languages, location, availability. Identical for every tier.
-- **Order:** filter match, then alphabetical by surname (D9). The rule is stated on screen.
+- **Order:** filter match, then alphabetical by surname (D9). With a location: filter match, then distance, then surname (D22). The rule in force is stated on screen.
+- **Near you (QC pilot, D20):** answer line "Nearest office for family matters: Dela Paz Law Office, Diliman, about 1.2 km away." Straight-line distance, labelled as such. Map shows one identical marker per office, the user's point, and a dashed line to their nearest matching office.
 - **Rules:** C2, C3, C6, C8.
 
 ## 5. Booking (`/app/bookings`)

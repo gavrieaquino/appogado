@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "sampleData": true,
+    "note": "SAMPLE DATA. Fictional offices at APPROXIMATE barangay-level points, for the Quezon City pilot demo. Real offices will be pinned by each lawyer at sign-up and checked during verification."
+  },
+  "items": [
+    {
+      "id": "o-l01",
+      "name": "Bautista Law Office",
+      "kind": "solo",
+      "barangay": "Cubao",
+      "city": "Quezon City",
+      "lat": 14.6215,
+      "lng": 121.0522
+    },
+    {
+      "id": "o-l02",
+      "name": "Dela Paz Law Office",
+      "kind": "solo",
+      "barangay": "Diliman",
+      "city": "Quezon City",
+      "lat": 14.6567,
+      "lng": 121.0631
+    },
+    {
+      "id": "o-l03",
+      "name": "Reyes Law Office",
+      "kind": "solo",
+      "barangay": "Novaliches",
+      "city": "Quezon City",
+      "lat": 14.7221,
+      "lng": 121.0357
+    },
+    {
+      "id": "o-l04",
+      "name": "Mendoza Law Office",
+      "kind": "solo",
+      "barangay": "Kamuning",
+      "city": "Quezon City",
+      "lat": 14.6308,
+      "lng": 121.0367
+    },
+    {
+      "id": "o-l05",
+      "name": "Villanueva Law Office",
+      "kind": "solo",
+      "barangay": "Project 4",
+      "city": "Quezon City",
+      "lat": 14.6264,
+      "lng": 121.0701
+    },
+    {
+      "id": "o-grn",
+      "name": "Garcia Ramos Navarro Law Office",
+      "kind": "firm",
+      "barangay": "Commonwealth",
+      "city": "Quezon City",
+      "lat": 14.6994,
+      "lng": 121.0872
+    },
+    {
+      "id": "o-l07",
+      "name": "Fernandez Law Office",
+      "kind": "solo",
+      "barangay": "Fairview",
+      "city": "Quezon City",
+      "lat": 14.7325,
+      "lng": 121.0578
+    },
+    {
+      "id": "o-l10",
+      "name": "Castillo Law Office",
+      "kind": "solo",
+      "barangay": "Galas",
+      "city": "Quezon City",
+      "lat": 14.6151,
+      "lng": 121.0108
+    },
+    {
+      "id": "o-l11",
+      "name": "Ocampo Law Office",
+      "kind": "solo",
+      "barangay": "Santa Mesa Heights",
+      "city": "Quezon City",
+      "lat": 14.6286,
+      "lng": 121.0052
+    },
+    {
+      "id": "o-l13",
+      "name": "Lim Law Office",
+      "kind": "solo",
+      "barangay": "Loyola Heights",
+      "city": "Quezon City",
+      "lat": 14.6404,
+      "lng": 121.0759
+    },
+    {
+      "id": "o-l14",
+      "name": "Pascual Law Office",
+      "kind": "solo",
+      "barangay": "Teachers Village",
+      "city": "Quezon City",
+      "lat": 14.6436,
+      "lng": 121.0608
+    }
+  ]
+}

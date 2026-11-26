@@ -1,5 +1,6 @@
-// Neutral directory order (decision D9, rule C2): filter match, then surname A to Z.
-// Takes only public lawyer fields. There is no plan, tier or payment input, by design.
+// Neutral directory order (decisions D9, D22; rule C2): filter match, then distance from the
+// user when they share a location or pick an area, then surname A to Z.
+// Takes only public lawyer fields and a distance. There is no plan, tier or payment input, by design.
 import type { Lawyer, LanguageCode, PracticeArea } from "./types";
 
 export type Filters = { area?: PracticeArea; city?: string; lang?: LanguageCode; minYears?: number };
@@ -14,9 +15,13 @@ export function matchScore(l: Lawyer, f: Filters): number {
 }
 
 /** Lawyers that meet every chosen filter, in neutral order. */
-export function search(lawyers: Lawyer[], f: Filters): Lawyer[] {
+export function search(lawyers: Lawyer[], f: Filters, km?: (l: Lawyer) => number): Lawyer[] {
   const active = [f.area, f.city, f.lang, f.minYears].filter((v) => v !== undefined).length;
+  const dist = (l: Lawyer) => (km ? km(l) : 0);
   return lawyers
     .filter((l) => matchScore(l, f) === active)
-    .sort((a, b) => matchScore(b, f) - matchScore(a, f) || a.surname.localeCompare(b.surname, "en") || a.firstName.localeCompare(b.firstName, "en"));
+    .sort((a, b) =>
+      matchScore(b, f) - matchScore(a, f) ||
+      dist(a) - dist(b) ||
+      a.surname.localeCompare(b.surname, "en") || a.firstName.localeCompare(b.firstName, "en"));
 }

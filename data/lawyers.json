@@ -23,7 +23,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-10-02",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l01"
     },
     {
       "id": "l02",
@@ -44,7 +45,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-09-14",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l02"
     },
     {
       "id": "l03",
@@ -64,7 +66,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-08-30",
       "availability": "limited",
-      "takesProBono": false
+      "takesProBono": false,
+      "officeId": "o-l03"
     },
     {
       "id": "l04",
@@ -86,7 +89,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-10-21",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l04"
     },
     {
       "id": "l05",
@@ -108,7 +112,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-09-01",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l05"
     },
     {
       "id": "l06",
@@ -130,7 +135,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-07-19",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-grn"
     },
     {
       "id": "l07",
@@ -150,7 +156,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-11-03",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l07"
     },
     {
       "id": "l08",
@@ -163,14 +170,15 @@
         "en",
         "fil"
       ],
-      "barangay": "Batasan Hills",
+      "barangay": "Commonwealth",
       "city": "Quezon City",
       "yearsOfPractice": 9,
       "rollNo": "SAMPLE-0008",
       "rollStatus": "Active",
       "verifiedOn": "2026-07-19",
       "availability": "limited",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-grn"
     },
     {
       "id": "l09",
@@ -183,14 +191,15 @@
       "languages": [
         "en"
       ],
-      "barangay": "Bagumbayan",
+      "barangay": "Commonwealth",
       "city": "Quezon City",
       "yearsOfPractice": 11,
       "rollNo": "SAMPLE-0009",
       "rollStatus": "Active",
       "verifiedOn": "2026-07-19",
       "availability": "open",
-      "takesProBono": false
+      "takesProBono": false,
+      "officeId": "o-grn"
     },
     {
       "id": "l10",
@@ -212,7 +221,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-06-11",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l10"
     },
     {
       "id": "l11",
@@ -226,14 +236,15 @@
         "en",
         "fil"
       ],
-      "barangay": "Sampaloc",
-      "city": "Manila",
+      "barangay": "Santa Mesa Heights",
+      "city": "Quezon City",
       "yearsOfPractice": 7,
       "rollNo": "SAMPLE-0011",
       "rollStatus": "Active",
       "verifiedOn": "2026-10-08",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l11"
     },
     {
       "id": "l12",
@@ -247,14 +258,15 @@
         "en",
         "fil"
       ],
-      "barangay": "Kapitolyo",
-      "city": "Pasig",
+      "barangay": "Commonwealth",
+      "city": "Quezon City",
       "yearsOfPractice": 13,
       "rollNo": "SAMPLE-0012",
       "rollStatus": "Active",
       "verifiedOn": "2026-07-19",
-      "availability": "closed",
-      "takesProBono": true
+      "availability": "limited",
+      "takesProBono": true,
+      "officeId": "o-grn"
     },
     {
       "id": "l13",
@@ -268,14 +280,15 @@
         "en",
         "fil"
       ],
-      "barangay": "Marikina Heights",
-      "city": "Marikina",
+      "barangay": "Loyola Heights",
+      "city": "Quezon City",
       "yearsOfPractice": 4,
       "rollNo": "SAMPLE-0013",
       "rollStatus": "Active",
       "verifiedOn": "2026-09-27",
       "availability": "open",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l13"
     },
     {
       "id": "l14",
@@ -295,7 +308,8 @@
       "rollStatus": "Active",
       "verifiedOn": "2026-11-12",
       "availability": "limited",
-      "takesProBono": true
+      "takesProBono": true,
+      "officeId": "o-l14"
     }
   ]
 }

@@ -19,7 +19,22 @@ export type Lawyer = {
   verifiedOn: string; // ISO date
   availability: Availability;
   takesProBono: boolean;
+  officeId: string;
 };
+
+/** An office on the map. Public business address only; no plan or tier field (rule C2). */
+export type Office = {
+  id: string;
+  name: string;
+  kind: "solo" | "firm";
+  barangay: string;
+  city: string;
+  lat: number;
+  lng: number;
+};
+
+export type LatLng = { lat: number; lng: number };
+export type Place = LatLng & { name: string };
 
 export type Urgency = "urgent" | "soon" | "routine";
 export type BriefStatus = "new" | "accepted" | "declined" | "more-info";

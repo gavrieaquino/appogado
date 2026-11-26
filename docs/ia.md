@@ -9,7 +9,7 @@ Two front doors (client, lawyer), one login later. Static routes only in the pro
 | `/` | Client landing | "Describe your problem once. Reach a verified lawyer." Shows a sample brief. |
 | `/describe` | Intake | Type, photo, or upload; EN or FIL; consent first |
 | `/describe/review` | Brief review | Client sees exactly what the lawyer will see; edits; picks a lawyer or pro bono routing |
-| `/find` | Directory | Filter by practice area, location, language, years; identical cards |
+| `/find` | Directory, Quezon City pilot | Filter by practice area, language, years. "Near you": use GPS or choose a QC barangay; list orders filter → distance → A to Z; map of offices (Leaflet) beside the list on desktop, List/Map toggle on phones. `?near=<barangay>` keeps a chosen area; GPS never enters the URL. |
 | `/find/[id]` | Lawyer profile | Verifiable facts only |
 | `/sent` | Confirmation | What happens next, how long it may take |
 

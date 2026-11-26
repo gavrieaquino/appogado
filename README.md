@@ -19,13 +19,15 @@ Try it end to end in one browser:
 3. **Bookings** (`/app/bookings`): schedule it, close the appointment, enter the hours.
 4. **ULAS** (`/app/ulas`): the hours count toward 60, with the personal minimum, days left, and a printable report.
 
+**Near you (Quezon City pilot):** on `/find`, tap "Use my location" or choose a QC barangay. The answer line names the nearest office that handles your kind of matter, the list orders by distance, and a map shows the offices. Your location stays on the device.
+
 Also: the firm view (`/app/firm`), account and seats (`/app/account`), the lawyer landing page (`/for-lawyers`) and a lawyer verification mock (`/admin/verification`). "Reset demo" in the footer clears everything.
 
 How the interface enforces the CPRA rules on advertising and fee-sharing is listed in `docs/compliance-rules.md` and checked by `npm run check:compliance`.
 
 ## Screens
 
-Screenshots from the smoke test are in `docs/screens/`: client home (`01`), consent (`02`), redaction check (`03`), brief review (`04`), directory (`05`), lawyer inbox (`06`), brief decision (`07`), bookings (`08`), ULAS (`09`), report (`10`), lawyer landing (`11`), firm (`12`), and phone views (`13` to `16`).
+Screenshots from the smoke test are in `docs/screens/`: client home (`01`), consent (`02`), redaction check (`03`), brief review (`04`), directory (`05`), lawyer inbox (`06`), brief decision (`07`), bookings (`08`), ULAS (`09`), report (`10`), lawyer landing (`11`), firm (`12`), phone views (`13` to `16`), and Near you on desktop and phone (`17`, `18`).
 
 ## What it does not demonstrate
 

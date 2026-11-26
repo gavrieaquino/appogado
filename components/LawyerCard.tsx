@@ -3,12 +3,14 @@ import type { Lang, Lawyer } from "@/lib/types";
 import { AVAILABILITY, LANGUAGES, PRACTICE } from "@/lib/practice";
 import { translate } from "@/lib/copy";
 import { fmtDate } from "@/lib/demo";
-import { fullName } from "@/lib/data";
+import { fullName, officeById } from "@/lib/data";
 import s from "./LawyerCard.module.css";
 
 // Rules C2, C3, C8: one fixed layout for every lawyer. The props carry public facts only;
 // there is no plan, tier, rating or badge input, so the card cannot vary by payment.
-export default function LawyerCard({ lawyer, lang }: { lawyer: Lawyer; lang: Lang }) {
+// `away` is the same kind of fact for every card (distance from the user's own chosen point).
+export default function LawyerCard({ lawyer, lang, away }: { lawyer: Lawyer; lang: Lang; away?: string }) {
+  const office = officeById(lawyer.officeId);
   const t = (k: Parameters<typeof translate>[1], v?: Record<string, string | number>) => translate(lang, k, v);
   return (
     <article className={s.card}>
@@ -19,7 +21,7 @@ export default function LawyerCard({ lawyer, lang }: { lawyer: Lawyer; lang: Lan
       </ul>
       <dl className={s.facts}>
         <div><dt>{t("lc.speaks")}</dt><dd>{lawyer.languages.map((l) => LANGUAGES[l]).join(", ")}</dd></div>
-        <div><dt>{t("pf.office")}</dt><dd>{lawyer.barangay}, {lawyer.city}</dd></div>
+        <div><dt>{t("pf.office")}</dt><dd>{office?.kind === "firm" ? `${office.name}, ` : ""}{lawyer.barangay}, {lawyer.city}{away ? <strong className={s.away}> · {away}</strong> : null}</dd></div>
         <div><dt>{t("fd.years")}</dt><dd>{lawyer.yearsOfPractice}</dd></div>
         <div><dt>{t("pf.avail")}</dt><dd>{AVAILABILITY[lawyer.availability][lang]}{lawyer.takesProBono ? ` · ${t("lc.pb")}` : ""}</dd></div>
       </dl>
