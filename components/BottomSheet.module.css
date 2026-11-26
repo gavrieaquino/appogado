@@ -8,7 +8,7 @@
     position: fixed; left: 0; right: 0; bottom: 56px; z-index: 15; max-height: calc(100vh - 140px); overflow-y: auto;
     border-radius: var(--radius) var(--radius) 0 0; border-bottom: 0; padding: 0 var(--s-3) var(--s-3);
     box-shadow: 0 -6px 24px rgba(0, 0, 0, .14);
-    --closed-y: 0px; transition: max-height var(--dur) var(--ease);
+    --closed-y: 0px; transition: max-height var(--spring-spatial-ms) var(--spring-spatial);
   }
   .sheet:not([data-open]) .body { display: none; }
   .handle { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; min-height: var(--touch); padding: var(--s-2) 0; border: 0; background: none; font: inherit; color: var(--muted); font-size: var(--fs-sm); cursor: grab; touch-action: none; }
