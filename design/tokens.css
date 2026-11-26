@@ -12,8 +12,10 @@
   --brand-wash: #f5f3fc;
   --on-brand: #ffffff;
   /* Act here: LAMBAT gold. Ink text on it (9.7:1). */
-  --act: #efbe01;
-  --act-dark: #c99f00;
+  /* Third colour (D32): soft gold, solid accents only, never stripes, never small text. */
+  --act: #e9b949;
+  --act-dark: #c9962a;
+  --act-tint: #fbf1d9;
   --on-act: #141a2e;
   --gold: var(--act);
 
@@ -98,8 +100,9 @@
     --brand-tint: #2a2148;
     --brand-wash: #1e1834;
     --on-brand: #120d24;
-    --act: #efbe01;
-    --act-dark: #ffd43b;
+    --act: #e9b949;
+    --act-dark: #f2cc6b;
+    --act-tint: #3a2f14;
     --on-act: #141a2e;
     --info-bg: #2a2148;  --info-ink: #d4c8fa;
     --warn-bg: #3a1f12;  --warn-ink: #f4c6ac;
@@ -118,8 +121,9 @@
   --brand-tint: #2a2148;
   --brand-wash: #1e1834;
   --on-brand: #120d24;
-  --act: #efbe01;
-  --act-dark: #ffd43b;
+  --act: #e9b949;
+  --act-dark: #f2cc6b;
+  --act-tint: #3a2f14;
   --on-act: #141a2e;
   --info-bg: #2a2148;  --info-ink: #d4c8fa;
   --warn-bg: #3a1f12;  --warn-ink: #f4c6ac;

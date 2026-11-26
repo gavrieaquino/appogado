@@ -1,6 +1,6 @@
 /* Answer card (LAMBAT map.css .col-top/.q/.stats). Put it first in the column. */
-.ac{position:relative;overflow:hidden;padding:calc(14px + var(--s3)) var(--s3) var(--s2);background:var(--card)}
-.ac::before{content:"";position:absolute;top:0;left:0;right:0;height:14px;background:repeating-linear-gradient(-45deg,var(--gold) 0 20px,#fff 20px 24px)}
+.ac{position:relative;overflow:hidden;padding:calc(4px + var(--s3)) var(--s3) var(--s2);background:var(--card)}
+.ac::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold)}
 .ac-eyebrow{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s1);margin:0 0 var(--s2);font-size:var(--t-sm);color:var(--muted)}
 .ac-place{font:700 var(--t-md)/1.25 var(--f-display);color:var(--ink)}
 .ac-q{font:700 1.25rem/1.25 var(--f-display);margin:0 0 var(--s2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
