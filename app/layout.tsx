@@ -12,7 +12,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${publicSans.variable}`}>
+    <html lang="en" data-theme="light" className={`${spaceGrotesk.variable} ${publicSans.variable}`}>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
         {children}
