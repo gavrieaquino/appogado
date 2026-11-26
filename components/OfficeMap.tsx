@@ -1,34 +1,44 @@
 "use client";
-// Leaflet map of law offices (decision D23). Leaflet's code loads only when the map is shown,
-// to save prepaid data. Tiles come from OpenStreetMap: fine for a prototype, not for pilot
-// traffic. Markers are identical for every office (rule C2); only the user's own nearest office
-// gets a dashed line, which is a fact computed from their location, not a placement anyone pays for.
+// Leaflet map of law offices for the map-first "Near you" page (decisions D23, D29; gis-ui-kit
+// docs/maplibre.md, Leaflet section). Markers are focusable divIcons styled like LAMBAT's rank dots:
+// gold numbers for offices with a matching lawyer, in distance order from the user's own point;
+// purple dots before a location is set; grey rings where no lawyer matches. Nobody can pay for a
+// marker style (rule C2): the only input is the filter match and the distance.
 import "leaflet/dist/leaflet.css";
 import { useEffect, useRef, useState } from "react";
-import type { Map as LMap, LayerGroup } from "leaflet";
-import type { LatLng, Office } from "@/lib/types";
+import type { Map as LMap, LayerGroup, Marker } from "leaflet";
+import type { LatLng } from "@/lib/types";
 import s from "./OfficeMap.module.css";
 
-export type MapOffice = Office & { km: number; matches: { id: string; name: string }[] };
+export type MapRow = { id: string; name: string; lat: number; lng: number; matches: number; rank: number | null; sub: string };
 type Props = {
-  from: LatLng & { accuracy?: number };
-  items: MapOffice[];
+  from: (LatLng & { accuracy?: number }) | null;
+  rows: MapRow[];
   nearestId: string | null;
+  hoverId: string | null;
+  selectedId: string | null;
   bounds: [[number, number], [number, number]];
-  labels: { region: string; you: string; here: string; none: string; away: (km: number) => string; tiles: string; note: string };
+  padBottom: number;
+  onHover: (id: string | null) => void;
+  onSelect: (id: string) => void;
+  onReady: () => void;
+  labels: { region: string; you: string; tiles: string };
 };
 
-const css = (v: string) => getComputedStyle(document.documentElement).getPropertyValue(v).trim() || "#5b3fd9";
-
-export default function OfficeMap({ from, items, nearestId, bounds, labels }: Props) {
+export default function OfficeMap({ from, rows, nearestId, hoverId, selectedId, bounds, padBottom, onHover, onSelect, onReady, labels }: Props) {
   const el = useRef<HTMLDivElement>(null);
-  const ref = useRef<{ L: typeof import("leaflet"); map: LMap; layer: LayerGroup } | null>(null);
+  const ref = useRef<{ L: typeof import("leaflet"); map: LMap; layer: LayerGroup; markers: Map<string, Marker> } | null>(null);
+  // The last framing, re-applied whenever the map changes size (column, sheet, first layout).
+  const refit = useRef<() => void>(() => {});
   const [ready, setReady] = useState(false);
   const [tilesFailed, setTilesFailed] = useState(false);
+  const cb = useRef({ onHover, onSelect, onReady });
+  cb.current = { onHover, onSelect, onReady };
 
   useEffect(() => {
     let cancelled = false;
     let fails = 0;
+    let ro: ResizeObserver | null = null;
     import("leaflet").then((L) => {
       if (cancelled || !el.current) return;
       const pad = 0.03;
@@ -37,91 +47,99 @@ export default function OfficeMap({ from, items, nearestId, bounds, labels }: Pr
         maxBounds: [[bounds[0][0] - pad, bounds[0][1] - pad], [bounds[1][0] + pad, bounds[1][1] + pad]],
         maxBoundsViscosity: 0.8,
         zoomSnap: 0.5,
+        zoomControl: false,
       });
+      L.control.zoom({ position: "bottomright" }).addTo(map);
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 18,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        className: s.tiles,
       })
         .on("tileerror", () => { if (++fails === 4) setTilesFailed(true); })
         .on("tileload", () => { fails = 0; })
         .addTo(map);
-      ref.current = { L, map, layer: L.layerGroup().addTo(map) };
-      map.getContainer().setAttribute("aria-label", labels.region);
-      map.getContainer().setAttribute("role", "region");
-      // The answer line above the map is its text summary; the list is the full alternative.
-      if (document.getElementById("near-answer")) map.getContainer().setAttribute("aria-describedby", "near-answer");
+      map.fitBounds(bounds);
+      ref.current = { L, map, layer: L.layerGroup().addTo(map), markers: new Map() };
+      const c = map.getContainer();
+      c.setAttribute("role", "region");
+      c.setAttribute("aria-label", labels.region);
+      if (document.getElementById("mp-answer")) c.setAttribute("aria-describedby", "mp-answer");
+      // Refit when the column, sheet or drawer changes the map's size.
+      ro = new ResizeObserver(() => { map.invalidateSize({ pan: false }); refit.current(); });
+      ro.observe(el.current);
       setReady(true);
+      cb.current.onReady();
     });
-    return () => { cancelled = true; ref.current?.map.remove(); ref.current = null; };
+    return () => { cancelled = true; ro?.disconnect(); ref.current?.map.remove(); ref.current = null; };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Draw markers when the data changes.
   useEffect(() => {
     const r = ref.current;
     if (!ready || !r) return;
-    const { L, map, layer } = r;
+    const { L, map, layer, markers } = r;
     layer.clearLayers();
-    const accent = css("--brand");
-    const ink = css("--ink");
-    const muted = css("--muted");
-    const surface = css("--surface");
-
-    const nearest = items.find((i) => i.id === nearestId);
-    if (nearest) {
-      L.polyline([[from.lat, from.lng], [nearest.lat, nearest.lng]], { color: ink, weight: 2, dashArray: "6 6", interactive: false }).addTo(layer);
+    markers.clear();
+    const nearest = rows.find((x) => x.id === nearestId);
+    if (from && nearest) {
+      L.polyline([[from.lat, from.lng], [nearest.lat, nearest.lng]], { color: "#141a2e", weight: 2, dashArray: "6 6", interactive: false }).addTo(layer);
     }
-    for (const o of items) {
-      const has = o.matches.length > 0;
-      const m = L.circleMarker([o.lat, o.lng], {
-        radius: 9, weight: 2, color: has ? accent : muted, fillColor: has ? accent : surface, fillOpacity: has ? 0.85 : 0.6,
-      }).addTo(layer);
-      // Build popups with DOM nodes and textContent, never HTML strings.
-      const box = document.createElement("div");
-      const h = document.createElement("strong");
-      h.textContent = o.name;
-      const where = document.createElement("div");
-      where.textContent = `${o.barangay}, ${o.city} · ${labels.away(o.km)}`;
-      box.append(h, where);
-      if (has) {
-        const p = document.createElement("div");
-        p.className = s.popLabel;
-        p.textContent = labels.here;
-        const ul = document.createElement("ul");
-        ul.className = s.popList;
-        for (const l of o.matches) {
-          const li = document.createElement("li");
-          const a = document.createElement("a");
-          a.href = `/find/${l.id}/`;
-          a.textContent = l.name;
-          li.append(a);
-          ul.append(li);
-        }
-        box.append(p, ul);
-      } else {
-        const p = document.createElement("div");
-        p.className = s.popLabel;
-        p.textContent = labels.none;
-        box.append(p);
+    for (const o of rows) {
+      const kind = o.matches ? (o.rank ? "rank" : "dot") : "none";
+      const html = kind === "rank" ? `<span class="ap-rank">${o.rank}</span>` : kind === "dot" ? '<span class="ap-dot"></span>' : '<span class="ap-none"></span>';
+      const size = kind === "rank" ? 32 : kind === "dot" ? 20 : 16;
+      const m = L.marker([o.lat, o.lng], {
+        icon: L.divIcon({ html, className: "ap-mk", iconSize: [size, size], iconAnchor: [size / 2, size / 2] }),
+        title: `${o.name}. ${o.sub}`,
+        alt: o.name,
+        keyboard: true,
+        riseOnHover: true,
+        zIndexOffset: kind === "rank" ? 1000 - (o.rank ?? 0) : kind === "dot" ? 500 : 0,
+      })
+        .on("mouseover focus", () => cb.current.onHover(o.id))
+        .on("mouseout blur", () => cb.current.onHover(null))
+        .on("click keypress", () => cb.current.onSelect(o.id))
+        .addTo(layer);
+      markers.set(o.id, m);
+    }
+    if (from) {
+      if (from.accuracy && from.accuracy > 0 && from.accuracy < 3000) {
+        L.circle([from.lat, from.lng], { radius: from.accuracy, color: "#141a2e", weight: 1, fillOpacity: 0.06, interactive: false }).addTo(layer);
       }
-      m.bindPopup(box);
+      L.marker([from.lat, from.lng], {
+        icon: L.divIcon({ html: '<span class="ap-you"></span>', className: "ap-mk", iconSize: [20, 20], iconAnchor: [10, 10] }),
+        title: labels.you, alt: labels.you, keyboard: false, zIndexOffset: 2000,
+      }).addTo(layer);
+      const near = rows.filter((x) => x.rank).slice(0, 3);
+      const pts: [number, number][] = [[from.lat, from.lng], ...near.map((x) => [x.lat, x.lng] as [number, number])];
+      refit.current = () => map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [56, 96], paddingBottomRight: [72, 56 + padBottom], maxZoom: 15, animate: false });
+    } else {
+      refit.current = () => map.fitBounds(bounds, { paddingTopLeft: [16, 72], paddingBottomRight: [16, 16 + padBottom], animate: false });
     }
-    if (from.accuracy && from.accuracy < 3000) {
-      L.circle([from.lat, from.lng], { radius: from.accuracy, color: ink, weight: 1, fillOpacity: 0.06, interactive: false }).addTo(layer);
-    }
-    L.circleMarker([from.lat, from.lng], { radius: 8, weight: 3, color: surface, fillColor: ink, fillOpacity: 1 })
-      .bindTooltip(labels.you, { direction: "top", offset: [0, -8] })
-      .addTo(layer);
+    refit.current();
+  }, [ready, from?.lat, from?.lng, rows, nearestId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const near = items.filter((i) => i.matches.length).slice(0, 3);
-    const pts: [number, number][] = [[from.lat, from.lng], ...near.map((i) => [i.lat, i.lng] as [number, number])];
-    map.fitBounds(L.latLngBounds(pts), { padding: [36, 36], maxZoom: 15 });
-  }, [ready, from, items, nearestId, labels]);
+  // Hover and selection rings, synced with the office list.
+  useEffect(() => {
+    const r = ref.current;
+    if (!ready || !r) return;
+    r.markers.forEach((m, id) => {
+      const node = m.getElement();
+      if (!node) return;
+      node.classList.toggle("ap-hl", id === hoverId || id === selectedId);
+      node.classList.toggle("ap-dim", !!hoverId && id !== hoverId);
+    });
+    if (selectedId) {
+      const m = r.markers.get(selectedId);
+      // Pan only when the selected office is out of view, so the framing of the nearest offices stays.
+      if (m && !r.map.getBounds().contains(m.getLatLng())) r.map.panTo(m.getLatLng());
+    }
+  }, [ready, hoverId, selectedId, rows]);
 
   return (
-    <figure className={s.wrap}>
+    <div className={s.wrap}>
       <div ref={el} className={s.map} aria-busy={!ready} />
-      {!ready && <p className={s.loading}><span className={s.skel} aria-hidden /><span className="sr-only">Loading map</span></p>}
       {tilesFailed && <p className={s.fail} role="status">{labels.tiles}</p>}
-      <figcaption className={s.note}>{labels.note}</figcaption>
-    </figure>
+    </div>
   );
 }

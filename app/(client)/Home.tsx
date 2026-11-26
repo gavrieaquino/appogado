@@ -1,48 +1,73 @@
 "use client";
 import Link from "next/link";
 import { useT } from "@/lib/i18n";
-import { sampleBriefs } from "@/lib/data";
+import { lawyers, offices, sampleBriefs } from "@/lib/data";
+import { PRACTICE_KEYS } from "@/lib/practice";
 import BriefCard from "@/components/BriefCard";
 import Notice from "@/components/Notice";
 import Term from "@/components/Term";
+import Icon from "@/components/Icon";
+import RollNumber from "@/components/RollNumber";
 import s from "./home.module.css";
 
 const sample = sampleBriefs.find((b) => b.id === "b01")!;
 
-// Client front door. The brief is the hero (vision principle 2).
+// Client front door, built on LAMBAT's home (gis-ui-kit): the headline is the answer in numbers,
+// then one action, a stats strip, a preview of the product (the brief), numbered steps and a story.
+// Every number comes from the sample data; none is invented.
 export default function Home() {
   const { t, lang } = useT();
   return (
-    <div className="page-in">
-      <section className={s.hero}>
-        <div>
-          <p className={s.kicker}>{t("home.kicker")}</p>
-          <h1 className={s.title}>{t("home.title")}</h1>
-          <p className={s.lead}>{t("home.lead")}</p>
-          <div className="btn-row">
-            <Link className="btn btn-primary" href="/describe/">{t("home.cta")}</Link>
-            <Link className="btn" href="/find/">{t("home.ctaFind")}</Link>
-          </div>
-          <p className={s.free}>{t("home.free")}</p>
+    <div className={s.home}>
+      <div className={s.bg} aria-hidden />
+      <div className={s.inner}>
+        <p className="eyebrow">{t("h.tagline")}</p>
+        <h1 className={s.h1}>
+          {t("h.answer1", { n: lawyers.length, o: offices.length })}
+          <span className={s.h1b}>{t("h.answer2")}</span>
+        </h1>
+        <p className={s.def}>{t("h.def")}</p>
+        <div className={s.cta}>
+          <Link className="btn btn-primary" href="/describe/">{t("home.cta")}<Icon name="arrow" size={18} /></Link>
+          <Link className={s.nearLink} href="/find/">{t("h.near")}</Link>
         </div>
-        <figure className={s.sample}>
-          <figcaption className={s.cap}>{t("home.sample")} · <Term def={t("t.brief")}>{lang === "en" ? "What is a brief?" : "Ano ang buod?"}</Term></figcaption>
-          <BriefCard brief={sample} lang={lang} />
-        </figure>
-      </section>
-      <section aria-labelledby="how" className={s.how}>
-        <h2 id="how" className={s.h2}>{t("home.how")}</h2>
-        <ol className={s.steps}>
-          {([1, 2, 3] as const).map((n) => (
-            <li key={n} className={s.step}>
-              <span className={s.n} aria-hidden>{n}</span>
-              <h3>{t(`home.s${n}t`)}</h3>
-              <p>{t(`home.s${n}d`)}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-      <Notice />
+
+        <dl className={s.strip}>
+          <div><dt>{t("h.stLawyers")}</dt><dd><RollNumber value={lawyers.length} /></dd></div>
+          <div><dt>{t("h.stOffices")}</dt><dd><RollNumber value={offices.length} /></dd></div>
+          <div><dt>{t("h.stAreas")}</dt><dd><RollNumber value={PRACTICE_KEYS.length} /></dd></div>
+        </dl>
+
+        <p className={s.lede}>{t("h.lede")}</p>
+
+        <div className={s.how}>
+          <Link className={s.preview} href="/describe/">
+            <div className={s.pvCard}><BriefCard brief={sample} lang={lang} headingLevel={3} /></div>
+            <span className={s.pvCap}>{t("h.pvCap")}<Icon name="arrow" size={18} /></span>
+            <span className={s.pvLegend}>{t("h.pvLegend")}</span>
+          </Link>
+          <section className={s.steps} aria-labelledby="how">
+            <h2 id="how">{t("home.how")}</h2>
+            <ol>
+              {([1, 2, 3] as const).map((n) => (
+                <li key={n}>
+                  <span className={s.n} aria-hidden>{n}</span>
+                  <div>
+                    <b>{t(`home.s${n}t`)}</b>
+                    {n === 2 ? <>{t("home.s2d")} <Term def={t("t.brief")}>{lang === "en" ? "What is a brief?" : "Ano ang buod?"}</Term></> : t(`home.s${n}d`)}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </div>
+
+        <blockquote className={s.quote}>
+          <p>{t("h.quote")}</p>
+          <cite>{t("h.cite")}</cite>
+        </blockquote>
+        <Notice />
+      </div>
     </div>
   );
 }

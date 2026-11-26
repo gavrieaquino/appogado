@@ -42,8 +42,9 @@ process real users.
 |---|---|
 | Next.js 15, App Router, `output: "export"` | Routing for ~12 screens; same framework as the old capstone app so screens port to the pilot. Static export = no server. |
 | TypeScript | Sample-data shapes become the pilot's types. |
-| CSS variables (`design/tokens.css`) + CSS Modules | One token set, no UI library, small pages for prepaid mobile data. |
-| Leaflet 1.9.4 + OpenStreetMap tiles | "Near you" map in the QC pilot. Loaded only when the map is shown. OSM public tiles are prototype-only: replace before pilot (D23, M15). |
+| CSS variables (`design/tokens.css`) + CSS Modules | LAMBAT token set via `gis-ui-kit` (D27), no UI library, small pages for prepaid mobile data. |
+| Space Grotesk + Public Sans, self-hosted (`app/fonts.ts`) | Display face for headings and every number; ~52 KB once (D28). |
+| Leaflet 1.9.4 + OpenStreetMap tiles | The map-first `/find` page in the QC pilot (D29). OSM public tiles are prototype-only: replace before pilot (D23, M15). |
 | `data/*.json` | Sample data only. |
 | **Not in this phase** | Supabase, auth, AI API, Mantine/any component library. No real data to hold. Revisit at pilot (see `docs/decisions.md`). |
 
@@ -60,6 +61,7 @@ Before calling work done: `npm run lint && npm test && npm run check:compliance 
 - `docs/ulas-rules.md` ULAS logic and its sources
 - `design/tokens.css`, `design/components.md`
 - `checklists/qa.md`, `checklists/compliance.md`, `lessons.md`
+- `.claude/skills/gis-ui-kit` **the UI system** (from LAMBAT): rules, components, map recipes, tokens, templates, QA. Read it before any UI work.
 - `.claude/skills/ui-ux-pro-max` UI/UX guidance (vendored; project rules win). Last review: `docs/ui-ux-review.md`
 
 ## House rules (from the LAMBAT method, adapted)
@@ -74,10 +76,12 @@ Before calling work done: `npm run lint && npm test && npm run check:compliance 
 **Layout and behaviour**
 - Answer first: every lawyer screen opens with the one line that answers its question
   ("22 of 60 hours. 15-hour minimum met. 412 days left.").
-- One action colour (`--act`, amber) with one job: "act here" (send brief, accept, log hours). Navy `--brand` carries structure.
+- Purple `--brand` carries structure (rail, links, primary pill buttons, markers). Gold `--act` has one job, "act here": nearest-office numbers, the nav tick, the 14 px band. Gold is never small text.
+- Grey page, white cards with one shadow, display face on every number (gis-ui-kit).
 - Never disable a button until a form is valid: `aria-disabled`, validate on click, explain inline, move focus (D26).
 - Nothing covers the thing it explains (popovers, tour cards).
-- Lawyer directory cards are identical. Order: filter match, then alphabetical. Never touched by payment.
+- Lawyer directory entries are identical. Order: filter match, then distance from the user (if they set a location), then name. Never touched by payment.
+- Map pages are full-bleed with a card column (sheet on phones) and the answer card first (D29).
 
 **Accessibility**
 - 44 px touch targets, 4.5:1 text contrast, labelled navigation (no icon-only nav).

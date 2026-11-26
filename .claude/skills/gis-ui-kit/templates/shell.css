@@ -1,0 +1,10 @@
+/* Shell (LAMBAT base.css .nav): brand rail on desktop, brand tab bar on phones, one sliding indicator. */
+.nav{position:sticky;top:0;height:100dvh;width:var(--nav-w);background:var(--brand);color:#fff;display:flex;flex-direction:column;padding:var(--s2) var(--s1);gap:var(--s1);transition:width .22s cubic-bezier(.4,0,.2,1)}
+.nav a.item{position:relative;z-index:1;display:flex;align-items:center;gap:var(--s2);height:48px;padding:0 12px;border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:var(--t-sm)}
+.nav-ind{position:absolute;left:0;top:0;border-radius:12px;background:rgba(255,255,255,.18);transition:transform .35s var(--ease),width .35s var(--ease),height .35s var(--ease)}
+.nav-ind::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:4px;border-radius:0 4px 4px 0;background:var(--gold)}
+@media (max-width:767px){
+  .nav{position:fixed;inset:auto 0 0 0;height:var(--tab-h);width:auto;flex-direction:row;padding:0}
+  .nav a.item{flex-direction:column;justify-content:center;gap:2px;height:var(--tab-h);border-radius:0;font-size:var(--t-xs)}
+  .nav-ind::before{left:16px;right:16px;top:0;bottom:auto;width:auto;height:4px;border-radius:0 0 4px 4px}
+}

@@ -1,7 +1,14 @@
-.seg { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 3px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); min-width: 0; }
-.thumb { position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); border-radius: 10px; background: var(--surface); box-shadow: var(--shadow); transform: translateX(calc(var(--i) * 100%)); transition: transform var(--dur) var(--ease); }
-.opt { position: relative; display: flex; align-items: center; justify-content: center; min-height: 38px; padding: 0 var(--s-3); font-size: var(--fs-sm); font-weight: 600; color: var(--muted); cursor: pointer; }
-.opt input { position: absolute; inset: -3px 0; z-index: 1; opacity: 0; margin: 0; cursor: pointer; } /* also the 44 px hit area */
-.opt:has(input:checked) { color: var(--ink); }
-.opt:has(input:focus-visible) { outline: 2px solid var(--brand); outline-offset: 1px; border-radius: 10px; }
+.seg { position: relative; display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 2px; border: 0; border-radius: 12px; background: var(--surface); min-width: 0; box-shadow: var(--shadow-soft); }
+.thumb { position: absolute; top: 2px; bottom: 2px; left: 2px; width: calc(50% - 2px); border-radius: 10px; background: var(--brand); transform: translateX(calc(var(--i) * 100%)); transition: transform .25s var(--ease); }
+.opt { position: relative; display: grid; place-items: center; min-height: 40px; padding: 0 var(--s-3); font: 600 var(--fs-sm) var(--font-text); color: var(--ink); cursor: pointer; }
+.opt span { position: relative; pointer-events: none; transition: color .2s; }
+.opt input { position: absolute; inset: -2px 0; z-index: 1; opacity: 0; margin: 0; cursor: pointer; } /* also the 44 px hit area */
+.opt:has(input:checked) span { color: #fff; }
+.opt:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 1px; border-radius: 10px; z-index: 2; }
 .seg[data-compact] .opt { padding: 0 var(--s-2); }
+/* On the brand rail: translucent track, white thumb, brand text on the thumb */
+.seg[data-tone="brand"] { background: rgba(255, 255, 255, .14); box-shadow: none; }
+.seg[data-tone="brand"] .thumb { background: #fff; }
+.seg[data-tone="brand"] .opt { color: #fff; }
+.seg[data-tone="brand"] .opt:has(input:checked) span { color: var(--brand); }
+.seg[data-tone="brand"] .opt:has(input:focus-visible) { outline-color: #fff; }

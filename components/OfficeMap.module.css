@@ -1,11 +1,25 @@
-.wrap { position: relative; margin: 0; }
-.map { height: 460px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--bg); overflow: hidden; z-index: 0; }
-.loading { position: absolute; inset: 0; margin: 0; pointer-events: none; }
-.skel { position: absolute; inset: 0; border-radius: var(--radius); background: linear-gradient(90deg, var(--line), var(--bg), var(--line)); background-size: 200% 100%; animation: sh 1.2s linear infinite; }
-@keyframes sh { to { background-position: -200% 0; } }
-.fail { position: absolute; left: var(--s-3); right: var(--s-3); top: var(--s-3); z-index: 500; margin: 0; padding: var(--s-2) var(--s-3); border-radius: var(--radius-sm); background: var(--warn-bg); color: var(--warn-ink); font-weight: 600; font-size: var(--fs-sm); }
-.note { margin-top: var(--s-1); font-size: var(--fs-xs); color: var(--muted); }
-.popLabel { margin-top: 6px; font-size: 12px; color: #4b5160; }
-.popList { margin: 2px 0 0; padding-left: 1.1em; }
-.popList a { display: inline-flex; align-items: center; min-height: 44px; }
-@media (max-width: 767px) { .map { height: 360px; } }
+.wrap { position: absolute; inset: 0; }
+.map { position: absolute; inset: 0; background: #dde3ee; z-index: 0; }
+/* Quieter raster: OSM standard tiles are busy, so the data carries the page (gis-ui-kit "quiet basemap"). */
+.tiles { filter: saturate(.35) brightness(1.04) contrast(.92); }
+.fail { position: absolute; left: var(--s-3); right: var(--s-3); bottom: var(--s-3); z-index: 500; margin: 0; padding: var(--s-2) var(--s-3); border-radius: var(--radius-sm); background: var(--warn-bg); color: var(--warn-ink); font-weight: 600; font-size: var(--fs-sm); }
+
+/* Marker icons (Leaflet inserts these, so the classes are global). LAMBAT map.css .rank */
+:global(.ap-mk) { background: none; border: 0; }
+:global(.ap-mk:focus-visible) { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 50%; }
+:global(.ap-rank) {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--act); border: 2px solid #fff; color: var(--ink);
+  font: 700 var(--fs-sm) var(--font-display); box-shadow: 0 1px 6px rgba(20, 26, 46, .55); cursor: pointer;
+  transition: box-shadow .15s, transform .15s, opacity .15s;
+}
+:global(.ap-dot) { display: block; width: 20px; height: 20px; border-radius: 50%; background: var(--brand); border: 3px solid #fff; box-shadow: 0 1px 4px rgba(20, 26, 46, .5); cursor: pointer; transition: box-shadow .15s, opacity .15s; }
+:global(.ap-none) { display: block; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid #8f96ab; cursor: pointer; transition: opacity .15s; }
+:global(.ap-you) { display: block; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); border: 4px solid #fff; box-shadow: 0 0 0 1px rgba(20, 26, 46, .4), 0 1px 6px rgba(20, 26, 46, .5); }
+:global(.ap-hl .ap-rank), :global(.ap-hl .ap-dot) { box-shadow: 0 0 0 4px var(--ink), 0 1px 6px rgba(20, 26, 46, .55); }
+:global(.ap-hl .ap-rank) { transform: scale(1.12); }
+:global(.ap-dim) { opacity: .45; }
+:global(.leaflet-control-zoom a) { width: 44px !important; height: 44px !important; line-height: 44px !important; font-size: 20px !important; }
+:global(.leaflet-control-zoom) { border: 0 !important; box-shadow: var(--shadow) !important; border-radius: 12px !important; overflow: hidden; }
+:global(.leaflet-control-attribution) { font-size: var(--fs-xs); }
+@media (prefers-reduced-motion: reduce) { :global(.ap-rank), :global(.ap-dot) { transition: none; } :global(.ap-hl .ap-rank) { transform: none; } }

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import Directory from "./Directory";
-export const metadata = { title: "Find a verified lawyer · APPogado prototype" };
+import MapPage from "./MapPage";
+export const metadata = { title: "Find a verified lawyer near you · APPogado prototype" };
 export default function Page() {
-  return <Suspense fallback={<p aria-busy="true">Loading lawyers…</p>}><Directory /></Suspense>;
+  return <Suspense fallback={<p aria-busy="true" style={{ padding: 24 }}>Loading the map…</p>}><MapPage /></Suspense>;
 }

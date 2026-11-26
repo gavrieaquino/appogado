@@ -71,7 +71,7 @@ const shot = async (page, name) => { await page.waitForTimeout(900); await page.
     await page.goto(BASE + "/");
     await shot(page, "01-client-home");
     await page.getByRole("radio", { name: "Filipino" }).check();
-    await page.getByRole("heading", { name: /Ikuwento ang problema mo/ }).waitFor();
+    await page.getByRole("heading", { name: /beripikadong abogado sa 11 opisina/ }).waitFor();
     await shot(page, "01b-client-home-filipino");
     await page.getByRole("radio", { name: "English" }).check();
   });
@@ -104,6 +104,7 @@ const shot = async (page, name) => { await page.waitForTimeout(900); await page.
     await page.getByRole("link", { name: "Choose a lawyer" }).click();
     await page.getByText("Your brief is ready").waitFor();
     await shot(page, "05-directory");
+    await page.locator("#row-o-l05 button").first().click(); // open Villanueva Law Office
     await page.getByRole("link", { name: "Atty. Andrea Villanueva" }).click();
     await page.getByRole("button", { name: /Send my brief to Atty. Andrea Villanueva/ }).click();
     await page.getByRole("heading", { name: "Your brief was sent" }).waitFor();
@@ -170,41 +171,49 @@ const shot = async (page, name) => { await page.waitForTimeout(900); await page.
   await run("GPS in Diliman finds the nearest family office and draws the map", { permissions: ["geolocation"], geolocation: DILIMAN }, async (page) => {
     await page.goto(BASE + "/find/?area=family");
     await page.getByRole("button", { name: "Use my location" }).click();
-    await page.getByText(/Nearest office for family matters: Dela Paz Law Office, Diliman/).waitFor();
-    await page.locator(".leaflet-container").waitFor();
-    const markers = await page.locator("path.leaflet-interactive").count();
-    if (markers < 11) throw new Error(`expected 11+ office markers, got ${markers}`);
+    await page.locator("#mp-answer").getByText("Dela Paz Law Office, Diliman").waitFor();
+    await page.locator(".ap-you").waitFor();
+    await page.getByRole("button", { name: "More options" }).click();
+    await page.getByRole("dialog", { name: "More options" }).getByText("Show offices with no matching lawyer").waitFor();
+    await page.keyboard.press("Escape");
+    if ((await page.getByRole("button", { name: "More options" }).getAttribute("aria-expanded")) !== "false") throw new Error("Esc did not close the drawer");
+    const ranks = await page.locator(".ap-rank").count();
+    if (ranks !== 5) throw new Error(`expected 5 numbered offices for family matters, got ${ranks}`);
     if (page.url().includes("14.6") || page.url().includes("121.0")) throw new Error("GPS position leaked into the URL");
     const stored = await page.evaluate(() => JSON.stringify({ ...localStorage, ...sessionStorage }));
     if (/14\.65|121\.06/.test(stored)) throw new Error("GPS position stored in the browser");
-    const first = await page.locator("ul li article h2").first().innerText();
-    if (!/Dela Paz/.test(first)) throw new Error(`first card should be the nearest family lawyer, got ${first}`);
+    const first = await page.locator("li[id^=row-] button").first().innerText();
+    if (!/Dela Paz/.test(first)) throw new Error(`first office row should be the nearest family office, got ${first}`);
     await shot(page, "17-near-you-map");
   });
   await run("choosing an area needs no GPS and goes in the URL", {}, async (page) => {
     await page.goto(BASE + "/find/");
     await page.getByLabel("Your barangay or area in Quezon City").selectOption("Fairview");
-    await page.getByText(/Nearest office: Fernandez Law Office, Fairview/).waitFor();
+    await page.locator("#mp-answer").getByText("Fernandez Law Office, Fairview").waitFor();
     if (!page.url().includes("near=Fairview")) throw new Error("area not in URL");
   });
   await run("GPS outside Quezon City is not used", { permissions: ["geolocation"], geolocation: { latitude: 14.5547, longitude: 121.0244 } }, async (page) => {
     await page.goto(BASE + "/find/");
     await page.getByRole("button", { name: "Use my location" }).click();
     await page.getByText(/outside Quezon City/).waitFor();
-    if (await page.locator(".leaflet-container").count()) throw new Error("map shown for a location outside the pilot");
+    if (await page.locator(".ap-you").count()) throw new Error("a location outside the pilot was used");
   });
   await run("denied location falls back to choosing an area", {}, async (page) => {
     await page.goto(BASE + "/find/");
     await page.getByRole("button", { name: "Use my location" }).click();
     await page.getByText(/location is off or was not allowed/).waitFor({ timeout: 15000 });
   });
-  await run("phone shows a List/Map toggle and loads the map only on demand", { viewport: { width: 390, height: 844 }, hasTouch: true }, async (page) => {
+  await run("phone: the column is a sheet whose peek is the answer", { viewport: { width: 390, height: 844 }, hasTouch: true }, async (page) => {
     await page.goto(BASE + "/find/?near=Cubao%20(Socorro)");
-    await page.getByText(/Nearest office: Bautista Law Office, Cubao/).waitFor();
-    if (await page.locator(".leaflet-container").count()) throw new Error("map loaded before it was asked for");
-    await page.getByRole("radio", { name: "Map" }).check();
-    await page.locator(".leaflet-container").waitFor();
-    await shot(page, "18-phone-near-you-map");
+    await page.locator("#mp-answer").getByText("Bautista Law Office, Cubao").waitFor();
+    const handle = page.getByRole("button", { name: "Show offices" });
+    if ((await handle.getAttribute("aria-expanded")) !== "false") throw new Error("sheet should start closed");
+    if (!(await page.locator("#mp-answer").isVisible())) throw new Error("answer not visible in the peek");
+    await shot(page, "18-phone-near-you-peek");
+    await handle.click();
+    await page.getByRole("button", { name: "Show the map" }).waitFor();
+    await page.locator("#row-o-l01 button").first().waitFor({ state: "visible" });
+    await shot(page, "19-phone-near-you-open");
   });
 }
 

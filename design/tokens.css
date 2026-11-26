@@ -1,55 +1,69 @@
-/* APPogado design tokens.
-   Structure follows the LAMBAT token set. Colours follow the ui-ux-pro-max "Accessible &
-   Ethical" recommendation (decision D25): trust navy for structure, one amber for actions.
-   Brand direction is still the owner's call (M10); swap values here only. */
+/* APPogado design tokens (decision D27).
+   Structure and values follow LAMBAT's token block (gis-ui-kit/styles/tokens.css):
+   grey page, white cards, one shadow, Space Grotesk for display and numbers, Public Sans for text.
+   Brand = APPogado purple (exact hex to confirm with the owner, M10). Gold = "act here" only:
+   nearest-office badges, the nav tick, the signature band. Gold is never small text on light. */
 
 :root {
-  /* Brand: navy carries structure (links, active nav, tags, meters, map markers, focus). */
-  --brand: #1e3a8a;
-  --brand-dark: #1e3a8a;
-  --brand-tint: #dbe4f7;
-  --brand-wash: #eff4fc;
+  /* Brand: purple carries structure (rail, links, primary buttons, tags, meters, markers, focus). */
+  --brand: #4a2bb5;        /* white text on it: 9.3:1 */
+  --brand-dark: #33197f;
+  --brand-tint: #e9e4f8;
+  --brand-wash: #f5f3fc;
   --on-brand: #ffffff;
-  /* Act: amber has one job, "act here" (send brief, accept, log hours). Buttons only. */
-  --act: #b45309;       /* white text on it: 5.0:1 */
-  --act-dark: #92400e;
-  --on-act: #ffffff;
+  /* Act here: LAMBAT gold. Ink text on it (9.7:1). */
+  --act: #efbe01;
+  --act-dark: #c99f00;
+  --on-act: #141a2e;
+  --gold: var(--act);
 
-  /* Neutrals */
-  --ink: #0f172a;
-  --muted: #475569;      /* 7.6:1 on --surface */
-  --line: #cbd5e1;
-  --bg: #f8fafc;
+  /* Neutrals (LAMBAT) */
+  --ink: #141a2e;
+  --muted: #4a5168;
+  --line: #d3d6de;
+  --bg: #eeeeee;
   --surface: #ffffff;
+  --card: var(--surface);
+
+  /* Frosted glass, only over the map */
+  --glass: rgba(255, 255, 255, 0.78);
+  --glass-edge: rgba(20, 26, 46, 0.08);
 
   /* Status (never used for ranking or prominence) */
-  --info-bg: #e8f0fb;  --info-ink: #0f3f7a;
+  --info-bg: #e9e4f8;  --info-ink: #33197f;
   --warn-bg: #fbe7dc;  --warn-ink: #6b2a0a;
   --ok-bg:   #e3f4e8;  --ok-ink:   #145c2c;
 
-  /* Type: system stack, no web-font download on prepaid data */
-  --font-text: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
-  --font-display: var(--font-text);
+  /* Type: self-hosted Space Grotesk + Public Sans (decision D28), system fallback */
+  --font-text: var(--f-public-sans, "Public Sans"), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--f-space-grotesk, "Space Grotesk"), system-ui, sans-serif;
   --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
   --fs-md: 1rem;
   --fs-lg: 1.5rem;
-  --fs-xl: clamp(2rem, 4vw, 3rem);
+  --fs-xl: clamp(2rem, 4.2vw, 3rem);
 
   /* Spacing: 8-px scale */
   --s-1: 4px;  --s-2: 8px;  --s-3: 16px;  --s-4: 24px;
   --s-5: 32px; --s-6: 48px; --s-7: 64px;
 
-  /* Shape and depth */
+  /* Shape and depth: one shadow for everything that floats */
   --radius: 16px;
   --radius-sm: 8px;
   --radius-pill: 999px;
-  --shadow: 0 2px 12px rgba(15, 23, 42, 0.10), 0 1px 2px rgba(15, 23, 42, 0.08);
+  --shadow: 0 2px 12px rgba(20, 26, 46, 0.14), 0 1px 2px rgba(20, 26, 46, 0.1);
+  --shadow-soft: 0 1px 2px rgba(20, 26, 46, 0.08);
 
-  /* Motion: one ease for everything, short durations */
+  /* Motion: quick out, soft land; spring only for the island */
   --ease: cubic-bezier(0.3, 0.9, 0.3, 1);
+  --spring: cubic-bezier(0.34, 1.45, 0.5, 1);
   --dur-fast: 0.2s;
   --dur: 0.3s;
+
+  /* Shell */
+  --nav-w: 232px;
+  --nav-w-closed: 64px;
+  --tab-h: 64px;
 
   /* Touch */
   --touch: 44px;
@@ -62,15 +76,15 @@
     --line: #2d313a;
     --bg: #111317;
     --surface: #1a1d23;
-    --brand: #93b4f5;
-    --brand-dark: #b9cdf8;
-    --brand-tint: #1c2a4d;
-    --brand-wash: #151f38;
-    --on-brand: #0b1220;
-    --act: #f59e0b;
-    --act-dark: #fbbf24;
-    --on-act: #111317;
-    --info-bg: #14273f;  --info-ink: #b9d3f5;
+    --brand: #b9a6f5;
+    --brand-dark: #d4c8fa;
+    --brand-tint: #2a2148;
+    --brand-wash: #1e1834;
+    --on-brand: #120d24;
+    --act: #efbe01;
+    --act-dark: #ffd43b;
+    --on-act: #141a2e;
+    --info-bg: #2a2148;  --info-ink: #d4c8fa;
     --warn-bg: #3a1f12;  --warn-ink: #f4c6ac;
     --ok-bg:   #12301c;  --ok-ink:   #b3e4c2;
   }
@@ -82,15 +96,15 @@
   --line: #2d313a;
   --bg: #111317;
   --surface: #1a1d23;
-  --brand: #93b4f5;
-  --brand-dark: #b9cdf8;
-  --brand-tint: #1c2a4d;
-  --brand-wash: #151f38;
-  --on-brand: #0b1220;
-  --act: #f59e0b;
-  --act-dark: #fbbf24;
-  --on-act: #111317;
-  --info-bg: #14273f;  --info-ink: #b9d3f5;
+  --brand: #b9a6f5;
+  --brand-dark: #d4c8fa;
+  --brand-tint: #2a2148;
+  --brand-wash: #1e1834;
+  --on-brand: #120d24;
+  --act: #efbe01;
+  --act-dark: #ffd43b;
+  --on-act: #141a2e;
+  --info-bg: #2a2148;  --info-ink: #d4c8fa;
   --warn-bg: #3a1f12;  --warn-ink: #f4c6ac;
   --ok-bg:   #12301c;  --ok-ink:   #b3e4c2;
 }
