@@ -1,0 +1,8 @@
+{
+  "_meta": {
+    "sampleData": true,
+    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. See CLAUDE.md problem constraints.",
+    "schema": "docs/surfaces.md"
+  },
+  "items": []
+}
