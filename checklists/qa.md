@@ -1,6 +1,12 @@
 # QA checklist
 
-Run before calling any surface done.
+Run before calling any surface done. The automated part:
+
+```
+npm run lint && npm test && npm run check:compliance && npm run build && npm run smoke
+```
+
+The smoke test covers viewports, horizontal scroll, console errors, control height and the end-to-end demo. The rest of this list is manual.
 
 ## Viewports
 - [ ] 1440×900 desktop

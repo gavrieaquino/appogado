@@ -46,7 +46,10 @@ process real users.
 | `data/*.json` | Sample data only. |
 | **Not in this phase** | Supabase, auth, AI API, Mantine/any component library. No real data to hold. Revisit at pilot (see `docs/decisions.md`). |
 
-Commands: `npm run dev`, `npm run build` (writes static `out/`), `npm run lint`.
+Commands: `npm run dev`, `npm run build` (writes static `out/`), `npm run lint`, `npm test` (Vitest),
+`npm run check:compliance` (banned wording, notice present, no tier field), `npm run smoke` (after a build:
+every route at 1440/390/375 px plus the end-to-end demo; writes `docs/screens/`).
+Before calling work done: `npm run lint && npm test && npm run check:compliance && npm run build && npm run smoke`.
 
 ## Where things live
 

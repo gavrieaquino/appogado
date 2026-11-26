@@ -1,5 +1,3 @@
-import Planned from "@/components/Planned";
-
-export default function Page() {
-  return <Planned href="/app/inbox/" />;
-}
+import Inbox from "./Inbox";
+export const metadata = { title: "Inbox · APPogado for lawyers (prototype)" };
+export default function Page() { return <Inbox />; }

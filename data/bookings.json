@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "sampleData": true,
+    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. Roll numbers use the SAMPLE- format so they cannot be mistaken for real ones."
+  },
+  "items": [
+    {
+      "id": "k01",
+      "briefId": "b05",
+      "matter": "Dismissed without notice after asking about overtime pay",
+      "date": "2026-11-27",
+      "time": "10:00",
+      "mode": "In person",
+      "place": "Office, Project 4",
+      "tag": "probono",
+      "status": "upcoming"
+    },
+    {
+      "id": "k02",
+      "briefId": "b07",
+      "matter": "Review of a supply contract for a small food business",
+      "date": "2026-11-26",
+      "time": "14:00",
+      "mode": "Video call",
+      "place": "Video call",
+      "tag": "paid",
+      "status": "upcoming"
+    },
+    {
+      "id": "k03",
+      "briefId": "b05",
+      "matter": "Hearing preparation: dismissal without notice",
+      "date": "2026-11-18",
+      "time": "15:00",
+      "mode": "In person",
+      "place": "Office, Project 4",
+      "tag": "probono",
+      "status": "done",
+      "hoursLogged": 1.5
+    }
+  ]
+}

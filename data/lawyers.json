@@ -1,8 +1,301 @@
 {
   "_meta": {
     "sampleData": true,
-    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. See CLAUDE.md problem constraints.",
-    "schema": "docs/surfaces.md"
+    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. Roll numbers use the SAMPLE- format so they cannot be mistaken for real ones."
   },
-  "items": []
+  "items": [
+    {
+      "id": "l01",
+      "firstName": "Ramon",
+      "surname": "Bautista",
+      "practiceAreas": [
+        "labor",
+        "land"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Cubao",
+      "city": "Quezon City",
+      "yearsOfPractice": 12,
+      "rollNo": "SAMPLE-0001",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-10-02",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l02",
+      "firstName": "Cristina",
+      "surname": "Dela Paz",
+      "practiceAreas": [
+        "family",
+        "estate"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Diliman",
+      "city": "Quezon City",
+      "yearsOfPractice": 8,
+      "rollNo": "SAMPLE-0002",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-09-14",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l03",
+      "firstName": "Jose Miguel",
+      "surname": "Reyes",
+      "practiceAreas": [
+        "criminal"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Novaliches",
+      "city": "Quezon City",
+      "yearsOfPractice": 15,
+      "rollNo": "SAMPLE-0003",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-08-30",
+      "availability": "limited",
+      "takesProBono": false
+    },
+    {
+      "id": "l04",
+      "firstName": "Teresa",
+      "surname": "Mendoza",
+      "practiceAreas": [
+        "consumer",
+        "business"
+      ],
+      "languages": [
+        "en",
+        "fil",
+        "ceb"
+      ],
+      "barangay": "Kamuning",
+      "city": "Quezon City",
+      "yearsOfPractice": 5,
+      "rollNo": "SAMPLE-0004",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-10-21",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l05",
+      "firstName": "Andrea",
+      "surname": "Villanueva",
+      "practiceAreas": [
+        "family",
+        "labor",
+        "consumer"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Project 4",
+      "city": "Quezon City",
+      "yearsOfPractice": 6,
+      "rollNo": "SAMPLE-0005",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-09-01",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l06",
+      "firstName": "Paolo",
+      "surname": "Garcia",
+      "practiceAreas": [
+        "land",
+        "estate"
+      ],
+      "languages": [
+        "en",
+        "fil",
+        "ilo"
+      ],
+      "barangay": "Commonwealth",
+      "city": "Quezon City",
+      "yearsOfPractice": 20,
+      "rollNo": "SAMPLE-0006",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-07-19",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l07",
+      "firstName": "Liza",
+      "surname": "Fernandez",
+      "practiceAreas": [
+        "family"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Fairview",
+      "city": "Quezon City",
+      "yearsOfPractice": 3,
+      "rollNo": "SAMPLE-0007",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-11-03",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l08",
+      "firstName": "Mark Anthony",
+      "surname": "Ramos",
+      "practiceAreas": [
+        "labor"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Batasan Hills",
+      "city": "Quezon City",
+      "yearsOfPractice": 9,
+      "rollNo": "SAMPLE-0008",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-07-19",
+      "availability": "limited",
+      "takesProBono": true
+    },
+    {
+      "id": "l09",
+      "firstName": "Grace",
+      "surname": "Navarro",
+      "practiceAreas": [
+        "business",
+        "consumer"
+      ],
+      "languages": [
+        "en"
+      ],
+      "barangay": "Bagumbayan",
+      "city": "Quezon City",
+      "yearsOfPractice": 11,
+      "rollNo": "SAMPLE-0009",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-07-19",
+      "availability": "open",
+      "takesProBono": false
+    },
+    {
+      "id": "l10",
+      "firstName": "Noel",
+      "surname": "Castillo",
+      "practiceAreas": [
+        "criminal",
+        "family"
+      ],
+      "languages": [
+        "en",
+        "fil",
+        "ceb"
+      ],
+      "barangay": "Galas",
+      "city": "Quezon City",
+      "yearsOfPractice": 18,
+      "rollNo": "SAMPLE-0010",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-06-11",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l11",
+      "firstName": "Jasmine",
+      "surname": "Ocampo",
+      "practiceAreas": [
+        "estate",
+        "land"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Sampaloc",
+      "city": "Manila",
+      "yearsOfPractice": 7,
+      "rollNo": "SAMPLE-0011",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-10-08",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l12",
+      "firstName": "Rafael",
+      "surname": "Torres",
+      "practiceAreas": [
+        "labor",
+        "criminal"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Kapitolyo",
+      "city": "Pasig",
+      "yearsOfPractice": 13,
+      "rollNo": "SAMPLE-0012",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-07-19",
+      "availability": "closed",
+      "takesProBono": true
+    },
+    {
+      "id": "l13",
+      "firstName": "Carmela",
+      "surname": "Lim",
+      "practiceAreas": [
+        "family",
+        "business"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Marikina Heights",
+      "city": "Marikina",
+      "yearsOfPractice": 4,
+      "rollNo": "SAMPLE-0013",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-09-27",
+      "availability": "open",
+      "takesProBono": true
+    },
+    {
+      "id": "l14",
+      "firstName": "Daniel",
+      "surname": "Pascual",
+      "practiceAreas": [
+        "consumer"
+      ],
+      "languages": [
+        "en",
+        "fil"
+      ],
+      "barangay": "Teachers Village",
+      "city": "Quezon City",
+      "yearsOfPractice": 2,
+      "rollNo": "SAMPLE-0014",
+      "rollStatus": "Active",
+      "verifiedOn": "2026-11-12",
+      "availability": "limited",
+      "takesProBono": true
+    }
+  ]
 }

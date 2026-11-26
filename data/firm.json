@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "sampleData": true,
+    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. Roll numbers use the SAMPLE- format so they cannot be mistaken for real ones."
+  },
+  "items": [
+    {
+      "name": "Garcia Ramos Navarro Law Office (sample)",
+      "members": [
+        {
+          "name": "Paolo Garcia",
+          "serviceHours": 34
+        },
+        {
+          "name": "Mark Anthony Ramos",
+          "serviceHours": 21
+        },
+        {
+          "name": "Grace Navarro",
+          "serviceHours": 9
+        },
+        {
+          "name": "Rafael Torres",
+          "serviceHours": 12
+        },
+        {
+          "name": "Ernesto Valdez",
+          "serviceHours": 0,
+          "exempt": "Aged 60 or older"
+        }
+      ]
+    }
+  ]
+}

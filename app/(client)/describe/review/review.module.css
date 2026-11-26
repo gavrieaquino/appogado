@@ -1,0 +1,10 @@
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--s-5); align-items: start; }
+.head { margin-bottom: var(--s-2); }
+.title { margin: 0 0 var(--s-1); font-size: var(--fs-lg); }
+.lead { margin: 0; color: var(--muted); }
+.side { position: sticky; top: var(--s-4); display: grid; gap: var(--s-3); }
+.sideTitle { margin: 0; font-size: 1.1rem; }
+.option { padding: var(--s-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.option h3 { margin: 0 0 var(--s-1); font-size: var(--fs-md); }
+.option .btn, .option a { width: 100%; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .side { position: static; } }

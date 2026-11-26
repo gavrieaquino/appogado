@@ -1,8 +1,182 @@
 {
   "_meta": {
     "sampleData": true,
-    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. See CLAUDE.md problem constraints.",
-    "schema": "docs/surfaces.md"
+    "note": "SAMPLE DATA. Fictional records for the demonstration prototype. No real person, lawyer, client or matter. Roll numbers use the SAMPLE- format so they cannot be mistaken for real ones."
   },
-  "items": []
+  "items": [
+    {
+      "id": "b01",
+      "receivedAt": "2026-11-24T09:12:00+08:00",
+      "language": "fil",
+      "category": "labor",
+      "urgency": "soon",
+      "urgencyReason": "Final pay was due 30 days after leaving. It is now 45 days.",
+      "title": "Final pay not released after resignation",
+      "facts": [
+        "Client resigned from a bakery in Project 4 on 10 October 2026 after two years of work.",
+        "The employer has not released final pay or the certificate of employment.",
+        "Client asked twice by text; the owner replied that payroll is 'still processing'.",
+        "Client has a photo of the last payslip and the resignation letter."
+      ],
+      "wants": "Receive final pay and a certificate of employment.",
+      "otherParty": "Sunrise Bakeshop Corp. (employer)",
+      "documents": [
+        "Photo: last payslip",
+        "Photo: resignation letter"
+      ],
+      "city": "Quezon City",
+      "proBonoRequested": false,
+      "source": "client",
+      "status": "new",
+      "addressedTo": "l05"
+    },
+    {
+      "id": "b02",
+      "receivedAt": "2026-11-23T15:40:00+08:00",
+      "language": "fil",
+      "category": "family",
+      "urgency": "routine",
+      "urgencyReason": "No hearing or deadline mentioned.",
+      "title": "Father stopped paying child support",
+      "facts": [
+        "Client has two children, aged 6 and 9, with a former partner. They were never married.",
+        "The father gave monthly support until August 2026, then stopped.",
+        "He acknowledges the children; his name is on both birth certificates.",
+        "Client works part time and asked a legal aid clinic for help."
+      ],
+      "wants": "Regular monthly support for the two children.",
+      "otherParty": "Eduardo M. (the children's father)",
+      "documents": [
+        "Birth certificates (2)"
+      ],
+      "city": "Quezon City",
+      "proBonoRequested": true,
+      "source": "partner-clinic",
+      "partner": "Sample University Legal Aid Clinic",
+      "status": "new",
+      "addressedTo": "l05"
+    },
+    {
+      "id": "b03",
+      "receivedAt": "2026-11-23T08:05:00+08:00",
+      "language": "en",
+      "category": "consumer",
+      "urgency": "urgent",
+      "urgencyReason": "Collectors are messaging the client's relatives and employer with threats.",
+      "title": "Online lending app contacting relatives with threats",
+      "facts": [
+        "Client borrowed PHP 3,000 through a lending app in September 2026 and has repaid PHP 2,200.",
+        "The app now demands PHP 7,900 including fees.",
+        "Collectors have sent threatening messages to the client's relatives and employer using the phone contact list.",
+        "Client has screenshots of the messages."
+      ],
+      "wants": "Stop the harassment and settle a fair amount.",
+      "otherParty": "QuickPeso Lending (lending app)",
+      "documents": [
+        "Screenshots of messages (6)"
+      ],
+      "city": "Quezon City",
+      "proBonoRequested": false,
+      "source": "client",
+      "status": "new",
+      "addressedTo": "l05"
+    },
+    {
+      "id": "b04",
+      "receivedAt": "2026-11-22T19:30:00+08:00",
+      "language": "fil",
+      "category": "land",
+      "urgency": "urgent",
+      "urgencyReason": "Notice to vacate gives 5 days.",
+      "title": "Notice to vacate from landlord in 5 days",
+      "facts": [
+        "Client rents a room in Commonwealth on a verbal agreement since 2023.",
+        "The landlord gave a written notice to vacate within 5 days, dated 21 November 2026.",
+        "Client is one month behind on rent because of a hospital stay."
+      ],
+      "wants": "More time to move out or to pay the rent owed.",
+      "otherParty": "Lydia T. (landlord)",
+      "documents": [
+        "Photo: notice to vacate"
+      ],
+      "city": "Quezon City",
+      "proBonoRequested": true,
+      "source": "client",
+      "status": "new",
+      "addressedTo": "l05"
+    },
+    {
+      "id": "b05",
+      "receivedAt": "2026-11-08T10:20:00+08:00",
+      "language": "fil",
+      "category": "labor",
+      "urgency": "soon",
+      "urgencyReason": "Labor complaint should be filed soon after dismissal.",
+      "title": "Dismissed without notice after asking about overtime pay",
+      "facts": [
+        "Client worked as a cleaner for three years.",
+        "Client was told not to report for work the day after asking about unpaid overtime.",
+        "No written notice or hearing was given."
+      ],
+      "wants": "Get the job back or receive separation pay and back wages.",
+      "otherParty": "Metro Shine Cleaning Services (employer)",
+      "documents": [
+        "Photo: company ID",
+        "Photo: work schedule"
+      ],
+      "city": "Quezon City",
+      "proBonoRequested": true,
+      "source": "partner-clinic",
+      "partner": "Sample University Legal Aid Clinic",
+      "status": "accepted",
+      "acceptedAs": "probono",
+      "addressedTo": "l05"
+    },
+    {
+      "id": "b06",
+      "receivedAt": "2026-11-05T13:00:00+08:00",
+      "language": "en",
+      "category": "family",
+      "urgency": "routine",
+      "urgencyReason": "No deadline mentioned.",
+      "title": "Questions about annulment and shared property",
+      "facts": [
+        "Client married in 2015 and separated from their spouse in 2021.",
+        "They co-own a condominium unit bought in 2018.",
+        "Client wants to know the options and the likely cost."
+      ],
+      "wants": "Understand options for ending the marriage and dividing the property.",
+      "otherParty": "Spouse (name given to lawyer only)",
+      "documents": [],
+      "city": "Quezon City",
+      "proBonoRequested": false,
+      "source": "client",
+      "status": "more-info",
+      "addressedTo": "l05"
+    },
+    {
+      "id": "b07",
+      "receivedAt": "2026-11-02T11:45:00+08:00",
+      "language": "en",
+      "category": "business",
+      "urgency": "routine",
+      "urgencyReason": "Client wants to sign within the month.",
+      "title": "Review of a supply contract for a small food business",
+      "facts": [
+        "Client runs a home-based food business and was offered a 12-month supply contract by a café chain.",
+        "The contract has an exclusivity clause and a penalty for late delivery."
+      ],
+      "wants": "Know which clauses to change before signing.",
+      "otherParty": "Brew Corner Cafés Inc. (buyer)",
+      "documents": [
+        "Draft contract (PDF, 6 pages)"
+      ],
+      "city": "Quezon City",
+      "proBonoRequested": false,
+      "source": "client",
+      "status": "accepted",
+      "acceptedAs": "paid",
+      "addressedTo": "l05"
+    }
+  ]
 }

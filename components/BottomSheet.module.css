@@ -1,0 +1,17 @@
+/* Desktop: plain side panel. */
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
+.handle, .grip { display: none; }
+.peek { margin-bottom: var(--s-3); }
+
+@media (max-width: 767px) {
+  .sheet {
+    position: fixed; left: 0; right: 0; bottom: 56px; z-index: 15; max-height: calc(100vh - 140px); overflow-y: auto;
+    border-radius: var(--radius) var(--radius) 0 0; border-bottom: 0; padding: 0 var(--s-3) var(--s-3);
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, .14);
+    --closed-y: 0px; transition: max-height var(--dur) var(--ease);
+  }
+  .sheet:not([data-open]) .body { display: none; }
+  .handle { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; min-height: var(--touch); padding: var(--s-2) 0; border: 0; background: none; font: inherit; color: var(--muted); font-size: var(--fs-sm); cursor: grab; touch-action: none; }
+  .grip { display: block; width: 40px; height: 5px; border-radius: 3px; background: var(--line); }
+  .peek { margin-bottom: var(--s-2); }
+}

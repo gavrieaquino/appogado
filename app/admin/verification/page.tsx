@@ -1,5 +1,3 @@
-import Planned from "@/components/Planned";
-
-export default function Page() {
-  return <Planned href="/admin/verification/" />;
-}
+import Verification from "./Verification";
+export const metadata = { title: "Lawyer verification (mock) · APPogado admin" };
+export default function Page() { return <Verification />; }

@@ -1,0 +1,4 @@
+.met, .behind, .exempt { display: inline-block; padding: 2px 8px; border-radius: var(--radius-pill); font-weight: 650; }
+.met { background: var(--ok-bg); color: var(--ok-ink); }
+.behind { background: var(--warn-bg); color: var(--warn-ink); }
+.exempt { background: var(--bg); color: var(--muted); font-weight: 500; }

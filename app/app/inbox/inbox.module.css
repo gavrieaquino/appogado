@@ -1,0 +1,21 @@
+.tabs { display: flex; gap: var(--s-1); margin: var(--s-4) 0 var(--s-3); overflow-x: auto; border-bottom: 1px solid var(--line); }
+.tab { position: relative; min-height: var(--touch); padding: 0 var(--s-3); border: 0; background: none; font: inherit; font-weight: 600; color: var(--muted); cursor: pointer; white-space: nowrap; }
+.tab[aria-selected="true"] { color: var(--ink); }
+.tab[aria-selected="true"]::after { content: ""; position: absolute; left: var(--s-2); right: var(--s-2); bottom: -1px; height: 3px; border-radius: 2px; background: var(--accent); }
+.count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: 4px; padding: 0 6px; border-radius: 11px; background: var(--bg); font-size: var(--fs-xs); }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
+.row { position: relative; padding: var(--s-3) var(--s-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color var(--dur-fast) var(--ease); }
+.row:has(.link:hover) { border-color: var(--accent); }
+.row:has(.link:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.link { color: var(--ink); text-decoration: none; }
+.link::after { content: ""; position: absolute; inset: 0; }
+.link:focus-visible { outline: none; }
+.title { display: block; font-weight: 700; font-size: 1.05rem; margin-bottom: var(--s-2); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--s-1); list-style: none; margin: 0 0 var(--s-1); padding: 0; }
+.chip { padding: 2px var(--s-2); border-radius: var(--radius-pill); background: var(--bg); font-size: var(--fs-xs); font-weight: 600; color: var(--muted); }
+.urgent { background: var(--warn-bg); color: var(--warn-ink); }
+.soon { background: var(--info-bg); color: var(--info-ink); }
+.pb { background: var(--ok-bg); color: var(--ok-ink); }
+.demo { background: var(--accent-tint); color: var(--accent-dark); }
+.meta { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+.empty { padding: var(--s-5); text-align: center; color: var(--muted); background: var(--surface); border-radius: var(--radius); }
