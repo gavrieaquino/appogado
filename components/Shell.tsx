@@ -9,10 +9,10 @@ import LangToggle from "./LangToggle";
 import Icon, { type IconName } from "./Icon";
 import s from "./Shell.module.css";
 
-export type NavItem = { href: string; label: Key | string; short?: Key | string; icon: IconName };
+export type NavItem = { href: string; label: Key | string; short?: Key | string; icon: IconName; exact?: boolean };
 type Props = { audience: "client" | "lawyer" | "admin"; items: NavItem[]; children: React.ReactNode };
 
-const isActive = (path: string, href: string) => (href === "/" ? path === "/" : path === href || path.startsWith(href));
+const isActive = (path: string, href: string, exact = false) => (href === "/" || exact ? path === href : path === href || path.startsWith(href));
 const WORD = "APPogado".split("");
 // Pages that own the whole viewport (map-first). Everything else is a document page.
 const FULL_BLEED = ["/find/"];
@@ -28,7 +28,7 @@ export default function Shell({ audience, items, children }: Props) {
   const indRef = useRef<HTMLSpanElement>(null);
   const [open, setOpen] = useState(true);
   const [weaving, setWeaving] = useState(0);
-  const activeIndex = items.findIndex((i) => isActive(path, i.href));
+  const activeIndex = items.findIndex((i) => isActive(path, i.href, i.exact));
   const full = FULL_BLEED.includes(path);
 
   useEffect(() => {
@@ -66,14 +66,14 @@ export default function Shell({ audience, items, children }: Props) {
   };
 
   const other = audience === "client"
-    ? { href: "/app/inbox/", text: t("foot.lawyerSide"), short: t("foot.lawyerSideShort") }
+    ? { href: "/app/", text: t("foot.lawyerSide"), short: t("foot.lawyerSideShort") }
     : { href: "/", text: "Prototype: see the client side", short: "Client side (demo)" };
 
   return (
     <div className={s.app} data-full={full || undefined}>
       <nav className={`${s.nav} no-print`} aria-label="Main">
         <div className={s.head}>
-          <Link href={audience === "client" ? "/" : "/app/inbox/"} className={s.brand} aria-label="APPogado home">
+          <Link href={audience === "client" ? "/" : "/app/"} className={s.brand} aria-label="APPogado home">
             <span className={s.mark} aria-hidden>A</span>
             <span className={s.words}>
               <span className={s.word} key={weaving} aria-hidden>
@@ -115,7 +115,7 @@ export default function Shell({ audience, items, children }: Props) {
             <span className={s.phoneLang}><LangToggle compact /></span>
           </div>
         )}
-        <main id="main" tabIndex={-1} className={full ? s.mainFull : s.main}>{children}</main>
+        <main id="main" tabIndex={-1} className={full ? s.mainFull : s.main} data-density={audience === "client" ? undefined : "dense"}>{children}</main>
         {!full && (
           <footer className={`${s.pageFoot} no-print`}>
             <Link href={other.href}>{other.text}</Link>

@@ -32,15 +32,15 @@ export default function Home() {
           <Link className={s.nearLink} href="/find/">{t("h.near")}</Link>
         </div>
 
-        <dl className={s.strip}>
+        <dl className={`${s.strip} reveal`}>
           <div><dt>{t("h.stLawyers")}</dt><dd><RollNumber value={lawyers.length} /></dd></div>
           <div><dt>{t("h.stOffices")}</dt><dd><RollNumber value={offices.length} /></dd></div>
           <div><dt>{t("h.stAreas")}</dt><dd><RollNumber value={PRACTICE_KEYS.length} /></dd></div>
         </dl>
 
-        <p className={s.lede}>{t("h.lede")}</p>
+        <p className={`${s.lede} reveal`}>{t("h.lede")}</p>
 
-        <div className={s.how}>
+        <div className={`${s.how} reveal`}>
           <Link className={s.preview} href="/describe/">
             <div className={s.pvCard}><BriefCard brief={sample} lang={lang} headingLevel={3} /></div>
             <span className={s.pvCap}>{t("h.pvCap")}<Icon name="arrow" size={18} /></span>
@@ -62,7 +62,7 @@ export default function Home() {
           </section>
         </div>
 
-        <blockquote className={s.quote}>
+        <blockquote className={`${s.quote} reveal`}>
           <p>{t("h.quote")}</p>
           <cite>{t("h.cite")}</cite>
         </blockquote>

@@ -29,7 +29,7 @@ How the interface enforces the CPRA rules on advertising and fee-sharing is list
 
 ## Screens
 
-Screenshots from the smoke test are in `docs/screens/`: client home (`01`), consent (`02`), redaction check (`03`), brief review (`04`), directory (`05`), lawyer inbox (`06`), brief decision (`07`), bookings (`08`), ULAS (`09`), report (`10`), lawyer landing (`11`), firm (`12`), phone views (`13` to `16`), and Near you on desktop and phone (`17` to `19`).
+Screenshots from the smoke test are in `docs/screens/`: client home (`01`), consent (`02`), redaction check (`03`), brief review (`04`), directory (`05`), lawyer inbox (`06`), brief decision (`07`), bookings (`08`), ULAS (`09`), report (`10`), lawyer landing (`11`), firm (`12`), phone views (`13` to `16`), Near you on desktop and phone with the sheet at peek, half and full (`17` to `20`), and the lawyer Today page (`21`).
 
 ## What it does not demonstrate
 

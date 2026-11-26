@@ -1,6 +1,6 @@
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); margin-bottom: var(--s-5); }
-.stat { padding: var(--s-3) var(--s-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
-.statNum { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; }
+.stat { padding: var(--card-pad); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-soft); }
+.statNum { margin: 0; font: 700 1.5rem/1.1 var(--font-display); color: var(--brand-dark); letter-spacing: -0.01em; }
 .statLbl { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); align-items: start; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }

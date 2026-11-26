@@ -5,8 +5,11 @@
 .honest { margin: var(--s-3) 0; padding: var(--s-3); border-radius: var(--radius-sm); background: var(--brand-wash); border: 1px solid var(--brand-tint); font-size: var(--fs-sm); }
 .honest > :first-child { margin-top: 0; }
 .honest > :last-child { margin-bottom: 0; }
-.answer { margin: 0 0 var(--s-2); font-size: var(--fs-lg); line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
-.kicker { margin: 0 0 var(--s-1); font-size: var(--fs-sm); color: var(--muted); font-weight: 600; }
+.answerCard { position: relative; overflow: hidden; margin: 0 0 var(--gap); padding: calc(14px + var(--card-pad)) var(--card-pad) var(--card-pad); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-soft); }
+.answerCard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 14px; background: repeating-linear-gradient(-45deg, var(--act) 0 20px, #fff 20px 24px); }
+.answerCard > :last-child { margin-bottom: 0; }
+.answer { margin: 0; font: 700 var(--fs-lg)/1.25 var(--font-display); letter-spacing: -0.01em; text-wrap: balance; }
+.kicker { margin: 0 0 var(--s-2); font-size: var(--fs-sm); color: var(--muted); font-weight: 600; }
 .tags { display: flex; flex-wrap: wrap; gap: var(--s-1); padding: 0; margin: 0; list-style: none; }
 .tag { display: inline-flex; align-items: center; min-height: 28px; padding: 0 var(--s-2); border-radius: var(--radius-pill); background: var(--bg); border: 1px solid var(--line); font-size: var(--fs-sm); }
 .tagUrgent { background: var(--warn-bg); color: var(--warn-ink); border-color: transparent; font-weight: 600; }

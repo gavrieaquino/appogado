@@ -37,6 +37,7 @@ compliance rules, dated decisions) always win over this kit.
 - `docs/rules.md` — one line per rule, each from a rejection or critic finding. Read before building.
 - `docs/components.md` — every component: what, build notes, pitfalls, LAMBAT class names.
 - `docs/maplibre.md` — map recipes (MapLibre and Leaflet).
+- `docs/motion.md` — spring tokens as CSS `linear()`, snap sheets, reveals, stagger.
 - `styles/tokens.css` — the token block. Swap `--brand*` for a new product; keep the structure.
 - `templates/*.css` — shell, answer card, map page (column, sheet, island, drawer), components.
 - `checklists/qa.md` — run before calling a screen done. `lessons.md` — newest first; add to it.
