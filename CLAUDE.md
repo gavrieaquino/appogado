@@ -60,6 +60,7 @@ Before calling work done: `npm run lint && npm test && npm run check:compliance 
 - `docs/ulas-rules.md` ULAS logic and its sources
 - `design/tokens.css`, `design/components.md`
 - `checklists/qa.md`, `checklists/compliance.md`, `lessons.md`
+- `.claude/skills/ui-ux-pro-max` UI/UX guidance (vendored; project rules win). Last review: `docs/ui-ux-review.md`
 
 ## House rules (from the LAMBAT method, adapted)
 
@@ -73,7 +74,8 @@ Before calling work done: `npm run lint && npm test && npm run check:compliance 
 **Layout and behaviour**
 - Answer first: every lawyer screen opens with the one line that answers its question
   ("22 of 60 hours. 15-hour minimum met. 412 days left.").
-- One accent colour with one job: "act here" (send brief, accept, log hours).
+- One action colour (`--act`, amber) with one job: "act here" (send brief, accept, log hours). Navy `--brand` carries structure.
+- Never disable a button until a form is valid: `aria-disabled`, validate on click, explain inline, move focus (D26).
 - Nothing covers the thing it explains (popovers, tour cards).
 - Lawyer directory cards are identical. Order: filter match, then alphabetical. Never touched by payment.
 

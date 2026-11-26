@@ -5,6 +5,6 @@
 .h2 { font-size: 1.1rem; margin: var(--s-4) 0 var(--s-2); }
 .next { margin: 0; padding-left: 1.3em; display: grid; gap: var(--s-2); }
 .copy { margin: var(--s-4) 0; }
-.copy summary { min-height: var(--touch); display: flex; align-items: center; cursor: pointer; font-weight: 650; color: var(--accent-dark); }
+.copy summary { min-height: var(--touch); display: flex; align-items: center; cursor: pointer; font-weight: 650; color: var(--brand-dark); }
 .demo { padding: var(--s-3); border-radius: var(--radius-sm); background: var(--warn-bg); }
 .demo a { color: var(--warn-ink); font-weight: 650; }

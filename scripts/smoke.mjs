@@ -78,7 +78,9 @@ const shot = async (page, name) => { await page.waitForTimeout(900); await page.
   await step("consent needs three yes answers", async () => {
     await page.goto(BASE + "/describe/");
     const cont = page.getByRole("button", { name: "Continue" });
-    if (!(await cont.isDisabled())) throw new Error("Continue enabled before consent");
+    if ((await cont.getAttribute("aria-disabled")) !== "true") throw new Error("Continue not marked aria-disabled before consent");
+    await cont.click({ force: true }); // validate on click: explains and stays on the step
+    await page.getByText("A brief can only be made and sent with a yes to all three").waitFor();
     for (const r of await page.getByRole("radio", { name: "Yes" }).all()) await r.check();
     await shot(page, "02-consent");
     await cont.click();
@@ -115,7 +117,10 @@ const shot = async (page, name) => { await page.waitForTimeout(900); await page.
   });
   await step("accept is locked until conflict check, then accept as pro bono", async () => {
     const acc = page.getByRole("button", { name: "Accept as pro bono" });
-    if (!(await acc.isDisabled())) throw new Error("accept enabled before conflict check");
+    if ((await acc.getAttribute("aria-disabled")) !== "true") throw new Error("accept not locked before conflict check");
+    await acc.click({ force: true }); // locked: focus goes to the conflict check, nothing is accepted
+    if (await page.getByText("You accepted this as pro bono.").count()) throw new Error("accepted without conflict check");
+    if (!(await page.evaluate(() => document.activeElement?.getAttribute("name") === "conflict"))) throw new Error("focus did not move to the conflict check");
     await page.getByRole("radio", { name: "No conflict" }).check();
     await shot(page, "07-brief-decision");
     await acc.click();

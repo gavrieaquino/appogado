@@ -26,6 +26,7 @@ export default function Describe() {
   const [consent, setConsent] = useState<{ store: boolean | null; read: boolean | null; share: boolean | null }>({ store: null, read: null, share: null });
   const [form, setForm] = useState({ story: "", wants: "", otherParty: "", deadline: "", city: "Quezon City", files: [] as string[] });
   const [error, setError] = useState(false);
+  const [consentTried, setConsentTried] = useState(false);
   const [making, setMaking] = useState(1);
 
   // Resume where the client left off on this device.
@@ -44,7 +45,7 @@ export default function Describe() {
 
   const toCheck = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.story.trim().length < 10) { setError(true); return; }
+    if (form.story.trim().length < 10) { setError(true); document.getElementById("story")?.focus(); return; }
     setError(false);
     set((x) => ({ ...x, intake: intake() }));
     setStep("check");
@@ -93,10 +94,21 @@ export default function Describe() {
               </li>
             ))}
           </ul>
-          {anyNo && <p className={s.warn} role="status">{t("c.need")}</p>}
+          {(anyNo || (consentTried && !allYes)) && <p className={s.warn} role="alert" id="consent-need">{t("c.need")}</p>}
           <p className="hint">{t("c.retention")}</p>
           <div className="btn-row">
-            <button className="btn btn-primary" disabled={!allYes} onClick={() => { set((x) => ({ ...x, consent: { store: true, read: true, share: true } })); setStep("story"); }}>{t("c.continue")}</button>
+            <button className="btn btn-primary" aria-disabled={!allYes || undefined} aria-describedby={!allYes && consentTried ? "consent-need" : undefined}
+              onClick={() => {
+                if (!allYes) {
+                  // Validate on click and send focus to the first unanswered (or "No") choice.
+                  setConsentTried(true);
+                  const k = (["store", "read", "share"] as const).find((x) => consent[x] !== true);
+                  document.querySelector<HTMLInputElement>(`input[name="c-${k}"]`)?.focus();
+                  return;
+                }
+                set((x) => ({ ...x, consent: { store: true, read: true, share: true } }));
+                setStep("story");
+              }}>{t("c.continue")}</button>
           </div>
         </section>
       )}
@@ -106,8 +118,8 @@ export default function Describe() {
           <div className="field">
             <label htmlFor="story">{t("f.story")}</label>
             <p className="hint" id="story-hint">{t("f.storyHint")}</p>
-            <textarea id="story" className="textarea" aria-describedby="story-hint" aria-invalid={error || undefined} value={form.story} onChange={(e) => setForm({ ...form, story: e.target.value })} />
-            {error && <p className="error" role="alert">{t("f.required")}</p>}
+            <textarea id="story" className="textarea" aria-describedby={error ? "story-hint story-error" : "story-hint"} aria-invalid={error || undefined} value={form.story} onChange={(e) => setForm({ ...form, story: e.target.value })} />
+            {error && <p className="error" role="alert" id="story-error">{t("f.required")}</p>}
             <button type="button" className="btn btn-quiet" onClick={() => setForm({ ...form, story: EXAMPLE[lang].story, wants: EXAMPLE[lang].wants, otherParty: EXAMPLE[lang].other })}>{t("f.example")}</button>
           </div>
           <div className="field">

@@ -11,7 +11,7 @@
 .step { padding: var(--s-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .step h3 { margin: var(--s-2) 0 var(--s-1); font-size: 1.1rem; }
 .step p { margin: 0; color: var(--muted); }
-.n { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 800; }
+.n { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--brand); color: var(--on-brand); font-weight: 800; }
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: var(--s-4); } .sample { transform: none; } .cap { transform: none; } }
 @media (max-width: 700px) { .steps { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .sample, .cap { transform: none; } }

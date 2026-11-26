@@ -12,6 +12,7 @@ export default function Verification() {
   const [state, set] = useDemo();
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [target, setTarget] = useState<string | null>(null);
+  const [needCheck, setNeedCheck] = useState<string | null>(null);
   const dlg = useRef<HTMLDialogElement>(null);
   const pending = verificationQueue.filter((v) => !state.verified[v.id]);
   const mark = (id: string, v: "approved" | "rejected") => set((x) => ({ ...x, verified: { ...x.verified, [id]: v } }));
@@ -35,17 +36,19 @@ export default function Verification() {
                   <td>{fmtDate(v.submittedOn)}</td>
                   <td>
                     <label className={s.check}>
-                      <input type="checkbox" disabled={!!done} checked={!!checked[v.id] || done === "approved"} onChange={(e) => setChecked({ ...checked, [v.id]: e.target.checked })} />
+                      <input type="checkbox" id={`chk-${v.id}`} disabled={!!done} checked={!!checked[v.id] || done === "approved"} onChange={(e) => { setChecked({ ...checked, [v.id]: e.target.checked }); setNeedCheck(null); }} />
                       Name and roll no. found, status Active
                     </label>
                     {checked[v.id] && !done && <span className="hint">Checked {fmtDate(DEMO_TODAY)}</span>}
+                    {needCheck === v.id && <span className="error" role="alert" id={`need-${v.id}`}>Check the SC Law List first.</span>}
                   </td>
                   <td>
                     {done ? (
                       <span className={done === "approved" ? s.ok : s.no}>{done === "approved" ? `Verified ${fmtDate(DEMO_TODAY)}` : "Rejected"}</span>
                     ) : (
                       <div className={s.actions}>
-                        <button className="btn btn-primary" disabled={!checked[v.id]} onClick={() => mark(v.id, "approved")}>Approve</button>
+                        <button className="btn btn-primary" aria-disabled={!checked[v.id] || undefined} aria-describedby={needCheck === v.id ? `need-${v.id}` : undefined}
+                          onClick={() => { if (!checked[v.id]) { setNeedCheck(v.id); document.getElementById(`chk-${v.id}`)?.focus(); return; } mark(v.id, "approved"); }}>Approve</button>
                         <button className="btn btn-quiet btn-danger" onClick={() => { setTarget(v.id); dlg.current?.showModal(); }}>Reject</button>
                       </div>
                     )}

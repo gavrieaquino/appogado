@@ -14,6 +14,7 @@ pattern is adapted from the LAMBAT UI breakdown.
 | **ULAS meter** | ULAS dashboard, firm view | LAMBAT rolling numbers | Bar to 60 with a 15-hour personal-minimum marker; number counts to value; final value in `sr-only`. | Animate under reduced motion |
 | **Term button (`?`)** | Anywhere a `words.md` term appears | LAMBAT `?` popovers | The term is the button; dotted underline; popover never covers the sentence; native Popover API. | Use a bare icon without the word |
 | **Status pill** | Brief generation | LAMBAT status island | Inline pill: "Step n of 3 · …"; `aria-live` mirror for real changes only. | Float over content it describes |
+| **Locked action** | Accept, consent Continue, Approve | ui-ux-pro-max | `aria-disabled`, focusable; on click explains and moves focus to what is missing (D26) | Use the `disabled` attribute to block a step |
 | **Segmented control** | EN/FIL, paid/pro bono, period | LAMBAT sliding thumb | Real radio inputs under a sliding thumb. | Lose keyboard access |
 | **Bottom sheet** | Client mobile flows, lawyer mobile inbox | LAMBAT phone sheet | Peek = height of the answer line; velocity drag; `inert` when closed. | Hide the answer line |
 | **App shell** | All | LAMBAT shell | Labelled nav; rail on desktop ↔ labelled tab bar under 768 px; sliding active indicator. | Icon-only navigation |

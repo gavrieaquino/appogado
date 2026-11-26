@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useBriefs } from "@/lib/useLawyer";
 import { decide } from "@/lib/actions";
@@ -21,6 +21,14 @@ export default function BriefView() {
   const [mode, setMode] = useState<"ask" | "decline" | null>(null);
   const [reason, setReason] = useState(REASONS[1]);
   const [ask, setAsk] = useState("");
+  const [askError, setAskError] = useState(false);
+  const conflictRef = useRef<HTMLFieldSetElement>(null);
+  // Accept stays locked until the conflict check (rule C10), but remains focusable and
+  // explains itself on click instead of being a dead, unfocusable button.
+  const tryAccept = (as: "paid" | "probono") => {
+    if (conflict !== "none") { conflictRef.current?.querySelector("input")?.focus(); return; }
+    decide(brief!, { status: "accepted", acceptedAs: as });
+  };
 
   if (!brief) {
     return (
@@ -53,7 +61,7 @@ export default function BriefView() {
     </div>
   ) : (
     <div className="stack">
-      <fieldset className={s.conflict}>
+      <fieldset className={s.conflict} ref={conflictRef}>
         <legend className="label">Check for a <Term def={translate("en", "t.conflict")}>conflict of interest</Term></legend>
         <p className="small">Other side named in this brief: <strong>{brief.otherParty}</strong>. Do you or your office act for this person, or have a personal link to them?</p>
         {([["none", "No conflict"], ["yes", "Yes, there is a conflict"], ["unsure", "Not sure yet"]] as const).map(([v, l]) => (
@@ -64,11 +72,11 @@ export default function BriefView() {
         ))}
       </fieldset>
 
-      {conflict !== "none" && <p className={s.lock} role="status">{conflict === "yes" ? "You cannot accept a matter with a conflict. Decline it below; the client can choose someone else." : "Accept unlocks once you confirm there is no conflict."}</p>}
+      {conflict !== "none" && <p className={s.lock} role="status" id="accept-lock">{conflict === "yes" ? "You cannot accept a matter with a conflict. Decline it below; the client can choose someone else." : "Accept unlocks once you confirm there is no conflict."}</p>}
 
       <div className={s.accept}>
-        <button className="btn btn-primary" disabled={conflict !== "none"} onClick={() => decide(brief, { status: "accepted", acceptedAs: "paid" })}>Accept as a paid matter</button>
-        <button className="btn btn-primary" disabled={conflict !== "none"} onClick={() => decide(brief, { status: "accepted", acceptedAs: "probono" })}>Accept as pro bono</button>
+        <button className="btn btn-primary" aria-disabled={conflict !== "none" || undefined} aria-describedby={conflict !== "none" ? "accept-lock" : undefined} onClick={() => tryAccept("paid")}>Accept as a paid matter</button>
+        <button className="btn btn-primary" aria-disabled={conflict !== "none" || undefined} aria-describedby={conflict !== "none" ? "accept-lock" : undefined} onClick={() => tryAccept("probono")}>Accept as pro bono</button>
         <p className="hint">Pro bono matters count toward your ULAS hours. For paid matters the client pays you directly.</p>
       </div>
 
@@ -78,12 +86,15 @@ export default function BriefView() {
       </div>
 
       {mode === "ask" && (
-        <form className="stack" onSubmit={(e) => { e.preventDefault(); decide(brief, { status: "more-info" }); }}>
+        <form className="stack" noValidate onSubmit={(e) => { e.preventDefault(); if (ask.trim().length < 3) { setAskError(true); document.getElementById("ask")?.focus(); return; } decide(brief, { status: "more-info" }); }}>
           <div className="field">
             <label htmlFor="ask">What do you need from the client?</label>
-            <textarea id="ask" className="textarea" style={{ minHeight: 100 }} value={ask} onChange={(e) => setAsk(e.target.value)} placeholder="For example: a photo of the notice, and the date you received it." />
+            <p className="hint" id="ask-hint">For example: a photo of the notice, and the date the client received it.</p>
+            <textarea id="ask" className="textarea" style={{ minHeight: 100 }} value={ask} aria-invalid={askError || undefined} aria-describedby={askError ? "ask-hint ask-error" : "ask-hint"}
+              onChange={(e) => { setAsk(e.target.value); if (askError) setAskError(false); }} />
+            {askError && <p className="error" role="alert" id="ask-error">Write what you need from the client.</p>}
           </div>
-          <button className="btn" type="submit" disabled={ask.trim().length < 3}>Send question</button>
+          <button className="btn" type="submit">Send question</button>
         </form>
       )}
       {mode === "decline" && (

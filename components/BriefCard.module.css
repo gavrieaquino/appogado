@@ -1,8 +1,8 @@
 .card { container-type: inline-size; position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
 /* Signature motif: a thin accent band across the top of the brief, the product's "hero" object */
-.band { height: 6px; background: repeating-linear-gradient(-45deg, var(--accent) 0 10px, var(--accent-tint) 10px 20px); }
+.band { height: 6px; background: repeating-linear-gradient(-45deg, var(--brand) 0 10px, var(--brand-tint) 10px 20px); }
 .head { padding: var(--s-4) var(--s-4) var(--s-3); border-bottom: 1px solid var(--line); }
-.kind { margin: 0 0 var(--s-1); font-size: var(--fs-sm); font-weight: 650; color: var(--accent-dark); }
+.kind { margin: 0 0 var(--s-1); font-size: var(--fs-sm); font-weight: 650; color: var(--brand-dark); }
 .title { margin: 0 0 var(--s-3); font-size: 1.25rem; line-height: 1.25; }
 .meta { display: flex; flex-wrap: wrap; gap: var(--s-1); padding: 0; margin: 0; list-style: none; }
 .chip { display: inline-flex; align-items: center; min-height: 26px; padding: 0 var(--s-2); border-radius: var(--radius-pill); background: var(--bg); font-size: var(--fs-xs); font-weight: 600; color: var(--muted); }

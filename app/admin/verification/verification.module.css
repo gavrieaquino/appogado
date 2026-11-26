@@ -1,5 +1,5 @@
 .check { display: flex; gap: var(--s-2); align-items: flex-start; min-height: var(--touch); cursor: pointer; }
-.check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+.check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--brand); flex: none; }
 .actions { display: flex; gap: var(--s-1); flex-wrap: wrap; }
 .ok, .no { display: inline-block; padding: 2px 8px; border-radius: var(--radius-pill); font-weight: 650; white-space: nowrap; }
 .ok { background: var(--ok-bg); color: var(--ok-ink); }

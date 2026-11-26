@@ -2,6 +2,8 @@
 
 Newest first. One line each: what happened, what rule it became.
 
+- 2026-11-25 — ui-ux-pro-max recommended a "Trust & Authority" pattern with security badges and case studies. For lawyers that breaks CPRA Canon II. Rule: run every external design recommendation past `docs/compliance-rules.md` before applying it.
+- 2026-11-25 — Disabled "Continue" and "Accept" buttons could not be focused and did not say what was missing. Rule: `aria-disabled` plus an explanation on click (D26).
 - 2026-11-25 — The GPS line read "accurate to about 0 m" in the test browser, which reports zero accuracy. Rule: never show a measured value the device did not really measure.
 - 2026-11-25 — Adding "nearest first" touched the neutral-ordering rule (D9). Rule: any change to directory order is a dated decision tied to the CPRA review, never a silent default.
 - 2026-11-25 — Critic pass on screenshots: the template brief turned "Mr. Roberto Lim" into "Mr." / "[NAME]im" (the L of Lim read as a middle initial; the splitter broke after "Mr."). Rule: a middle initial needs its period, and sentence splitting skips titles. Regression tests added.

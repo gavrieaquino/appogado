@@ -6,7 +6,7 @@
 .chips { display: flex; gap: var(--s-1); list-style: none; margin: 0 0 var(--s-1); padding: 0; }
 .chip { padding: 2px var(--s-2); border-radius: var(--radius-pill); background: var(--bg); font-size: var(--fs-xs); font-weight: 600; color: var(--muted); }
 .pb { background: var(--ok-bg); color: var(--ok-ink); }
-.demo { background: var(--accent-tint); color: var(--accent-dark); }
+.demo { background: var(--brand-tint); color: var(--brand-dark); }
 .meta { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
 .done { margin: var(--s-1) 0 0; font-size: var(--fs-sm); font-weight: 650; color: var(--ok-ink); }
 .actions { display: flex; flex-direction: column; gap: var(--s-1); align-items: flex-end; }
