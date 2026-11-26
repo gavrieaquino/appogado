@@ -126,4 +126,4 @@ img, svg { max-width: 100%; }
 }
 
 /* Locked to light (D33): ignore the device dark-mode setting, including form controls. */
-html[data-theme="light"] { color-scheme: light; }
+html[data-theme="light"] { color-scheme: only light; }

@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   description: "Demonstration prototype on sample data. Not legal advice.",
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1 };
+// "only light" also tells Chrome's Auto Dark Mode not to darken the page (D33).
+export const viewport: Viewport = { width: "device-width", initialScale: 1, colorScheme: "only light", themeColor: "#4a2bb5" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
